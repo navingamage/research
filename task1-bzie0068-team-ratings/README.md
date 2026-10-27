@@ -17,7 +17,6 @@ Apps: Google Sheets, Google Docs
 input 1 - Team_Performance_Apr-Sep_2026.xlsx
 input 2 - Peer_Feedback_and_1on1_Notes.docx
 input 3 - Review_Summary_Template.docx
-artifact 1 - Highlighted_Feedback_Notes.pdf
 final output 1 - Team_Ratings.xlsx
 final output 2 - Team_Review_Summary.pdf
 ```
