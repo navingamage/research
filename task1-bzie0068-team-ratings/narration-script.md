@@ -1,233 +1,313 @@
-# Script: half-year ratings for my team
+# Script: half-year ratings for my team (re-record version)
 
-**Target length:** about 20 to 25 minutes, speaking slowly. The limits are 15:00 to 50:59 in total.
+**What changed after review:**
+1. Minimize TaskRecorder first, before the intro.
+2. Close the Goal doc window instead of minimizing it.
+3. Describe every mouse move and click: what you're doing, where it is on screen, and why.
+4. Close the work window after the epilogue, before you stop the recording.
 
-**Apps:** Google Sheets and Google Docs, both in one Firefox window. You move between them with the tabs at the top of Firefox.
-
-**Typing:** only the review summary at the end, about 12 short lines.
+**Target length:** about 30 to 35 minutes. The detailed narration takes longer, and that's fine. The limits are 15:00 to 50:59, and the epilogue can be at most 4:00.
 
 **How to use it:**
-- ▶ = do this.
-- The quoted lines are what you say. Use your own words if they come more naturally.
-- Name what you click and where it is on screen. Pause about a second after each click.
+- ▶ = do this. The quoted lines are what you say while doing it.
+- Say the mouse movement out loud every time: "I'm moving my mouse to...", "I'm clicking...".
+- Move slowly, pause on the thing you're naming, and pause about a second after each click.
 
-**Before Start:**
-- One Firefox window with 3 tabs: the workbook (Rating Guide tab), the feedback notes doc, and the summary template doc.
-- Minimize that window.
-- A separate window with only the Goal doc showing.
+---
+
+## Setup before you press Start (not recorded)
+
+1. Open one Firefox window with 3 tabs, in this order:
+   - Tab 1: the workbook, on the **Rating Guide** tab
+   - Tab 2: the feedback notes doc
+   - Tab 3: the summary template doc
+2. **Minimize** that Firefox window with its yellow button so it sits in the Dock.
+3. Open the Goal doc (Google Docs) in a **separate** Firefox window. It should be the only window visible.
+4. Open TaskRecorder on top of the Goal doc. Paste the Goal, add the apps Google Sheets and Google Docs, and select the microphone.
+5. Quit everything else. Turn Do Not Disturb on.
 
 ---
 
 ## Intro (under 20 seconds)
 
-▶ Click Start Recording. Minimize TaskRecorder.
+▶ Click **Start Recording** in TaskRecorder.
+
+▶ **Straight away**, click TaskRecorder's yellow minimize button at the top left.
+
+▶ The Goal doc is now showing. Say:
 
 "I will be beginning my task soon. Here is the workflow I have in mind."
 
-▶ Wait 3 seconds, then minimize the Goal doc window.
+▶ Click the **red close button** at the top left of the Goal doc window.
+
+"I'm closing the goal document with the red button at the top left of the window."
 
 ---
 
-## Part 1: Sheets, the rating guide (about 3 min)
+## Part 1: Sheets, the rating guide
 
-▶ Click Firefox in the Dock. Click the workbook tab at the top.
+▶ Move to the Dock on the left. Click the Firefox icon.
 
-"I'm the tech lead for our payments team, and it's review time. I've got four engineers to rate for April to September. I'll start with our rating guide here in Google Sheets."
+"I'm moving my mouse to the Dock on the left side of the screen and clicking the Firefox icon to open my work window."
 
-▶ Point at the rating scale, rows 5 to 9.
+▶ Point at the tab bar, then click Tab 1 (the workbook).
 
-"Ratings go from 1 to 5. Three means meets expectations, and most people should land there. Five is rare. It means impact beyond the team."
+"At the top of Firefox there are three tabs. I'm clicking the first tab, which is my team workbook in Google Sheets."
 
-▶ Point at the categories and weights.
+▶ Point at the sheet tabs at the bottom. Rating Guide should already be selected.
 
-"Each person gets scored on four things. Delivery counts the most at 35 percent, then quality at 30, teamwork at 20 and growth at 15."
+"At the bottom of the sheet are three tabs: Rating Guide, Team Data and Ratings. I'm on Rating Guide."
 
-▶ Point at the level expectations.
+▶ Move the cursor down rows 5 to 9 of the rating scale.
 
-"The level matters too. An Engineer One is still learning and should ask for help early. An Engineer Two should own features and help raise the bar for everyone else."
+"I'm moving my mouse down the rating scale, rows 5 to 9. Ratings go from 1, Below, up to 5, Outstanding. A 3 means Meets, and the guide says most people should land there. A 5 is rare. It means impact beyond the team."
 
-▶ Point at the spread guidance.
+▶ Point at the categories table, rows 13 to 16.
 
-"And the guide says no more than one in four people should get a 4 or higher. So with four people, I can give at most one high rating."
+"Moving down to the categories table, rows 13 to 16. Each person is scored on four things. Delivery counts the most at 35 percent. Then quality at 30, teamwork at 20, and growth at 15. Delivery and quality together make up two thirds of the score."
 
----
+▶ Point at rows 19 and 20, the level expectations.
 
-## Part 2: Sheets, the team's numbers (about 4 min)
+"Rows 19 and 20 are the level expectations. An Engineer One delivers well-scoped tasks and asks for help early. An Engineer Two owns features end to end and reviews other people's code. That matters, because I rate people against their level, not against each other."
 
-▶ Click the Team Data tab at the bottom.
+▶ Point at row 23, the spread guidance.
 
-"Now the numbers. I'll click Team Data at the bottom."
-
-▶ Point along Priya's row.
-
-"Priya, Engineer Two. She hit 92 percent of her commitments, only 12 percent of her PRs got sent back, and she did 88 code reviews, way more than anyone else. Peer feedback is 4.7."
-
-▶ Point along Marcus's row.
-
-"Marcus, also Engineer Two. On paper he looks like the star: 91 PRs, the fastest cycle time, 98 percent of commitments. But 41 percent of his PRs got sent back for changes, and he caused 3 incidents."
-
-▶ Point at the note under the table about Marcus's incidents.
-
-"The note says two were missed null checks in refunds, and one was a config change with no review. So the volume is high, but the quality isn't there."
-
-▶ Point along Jordan's row, then at the note about Jordan's cycle time.
-
-"Jordan, Engineer One, only seven months on the team. Fewer PRs, which is normal for a new person. And look at this note: his cycle time went from 52 hours down to 21. He's getting faster every month."
-
-▶ Point along Elena's row.
-
-"Elena, Engineer One, a year and a half in. Only 61 percent of commitments met, the slowest cycle time, and just 9 code reviews. That's the one I'm most worried about."
+"And row 23 is the spread rule: no more than one in four people at a 4 or higher. With four engineers, I can give at most one high rating, so I'll need to be careful who gets it."
 
 ---
 
-## Part 3: Docs, feedback and 1:1 notes (about 5 min)
+## Part 2: Sheets, the team's numbers
 
-▶ Click the feedback notes tab at the top of Firefox.
+▶ Move to the bottom of the screen and click the **Team Data** tab.
 
-"Numbers only tell part of it, so I'll switch to the feedback notes tab at the top."
+"I'm moving my mouse to the bottom of the sheet and clicking the Team Data tab, the second one."
 
-▶ Click the Highlight color button in the toolbar (the marker icon) and pick yellow.
+▶ Point across the header row, row 3.
 
-"I'll use the highlighter in the toolbar, the marker icon, and pick yellow."
+"Row 3 has the column headers: PRs merged, cycle time, PRs sent back for changes, code reviews given, commitments met, incidents and peer feedback. This is April to September."
 
-▶ Under Priya, select and highlight the line about pairing with Jordan.
+▶ Move along Priya's row, row 4. Stop on each number as you say it.
 
-"For Priya, this is the big one. She paired with Jordan for two weeks and it sped him up. That's real mentoring."
+"Row 4 is Priya, an Engineer Two. I'm moving across her row. Sprint commitments met, column H, is 92 percent. PRs sent back, column F, is only 12 percent, so her work is clean. Code reviews given, column G, is 88. That's by far the most on the team. And her peer feedback in column K is 4.7."
 
-▶ Under Priya, highlight "she's stretched thin covering reviews for everyone."
+▶ Move along Marcus's row, row 5.
 
-"But she's stretched thin. I need to watch that, or she'll burn out."
+"Row 5 is Marcus, also Engineer Two. PRs merged in column D is 91, the highest. His cycle time in column E is 9 hours, the fastest. Commitments met is 98 percent. On paper he looks like the star. But column F shows 41 percent of his PRs got sent back for changes, and column I shows he caused 3 incidents."
 
-▶ Under Marcus, highlight "approves PRs within a minute."
+▶ Move down to the note in row 11 and trace it with the cursor.
 
-"For Marcus, peers say he approves PRs in a minute. That's a teamwork problem as well as a quality one."
+"I'm moving down to the note in row 11. Two of those incidents were missed null checks in the refund flow, and one was a config change pushed without review. So the volume is high, but the quality isn't there."
 
-▶ Under Marcus, highlight "Feels quality issues are QA's job."
+▶ Move along Jordan's row, row 6, then to the note in row 10.
 
-"And he thinks quality is QA's job. That's the mindset I need to change."
+"Row 6 is Jordan, an Engineer One. Column C says he's been on the team only 7 months. Fewer PRs, 38, which is normal for someone new. And the note in row 10 says his cycle time went from 52 hours down to 21. He's getting faster every month."
 
-▶ Under Jordan, highlight "Handled the payment gateway timeout on-call really calmly."
+▶ Move along Elena's row, row 7.
 
-"Jordan handled an on-call incident calmly after only seven months. That's great to see."
-
-▶ Under Elena, highlight "goes quiet when she's blocked."
-
-"For Elena, the pattern is that she goes quiet when she's stuck."
-
-▶ Under Elena, highlight "doesn't like interrupting people with questions."
-
-"And here's the reason why. She doesn't like interrupting people. So this isn't about skill. Her code is clean. She needs to ask for help sooner."
+"Row 7 is Elena, Engineer One, a year and a half on the team. Commitments met in column H is only 61 percent. Her cycle time in column E is 46 hours, the slowest. And column G shows just 9 code reviews. She's the one I'm most concerned about."
 
 ---
 
-## Part 4: Sheets, scoring and final ratings (about 5 min)
+## Part 3: Docs, feedback and 1:1 notes
 
-▶ Click the workbook tab at the top, then the Ratings tab at the bottom.
+▶ Move to the top of Firefox and click Tab 2.
 
-"Now I'll score everyone. Back to the workbook, Ratings tab at the bottom."
+"The numbers only tell part of the story, so I'm moving my mouse up to the tab bar and clicking the second tab, my peer feedback and 1:1 notes in Google Docs."
 
-▶ For Priya, pick from the dropdowns: Delivery 4, Quality 5, Teamwork 5, Growth 4.
+▶ Point at the Priya heading, then move the cursor along each line as you talk.
 
-"Priya: delivery 4, quality 5, teamwork 5 because of all the reviews and mentoring, and growth 4."
+"Under Priya's heading, I'm tracing along the second line with my cursor. A peer says she paired with Jordan for two weeks and it really sped him up. That's real mentoring, and it shows up in Jordan's numbers. Further down, in her September 1:1, she said she's stretched thin covering reviews for everyone. That's a burnout risk I need to watch."
 
-▶ Point at her weighted score, 4.5.
+▶ Scroll down slowly with the trackpad to Marcus. Trace his lines.
 
-"Her weighted score is 4.5."
+"I'm scrolling down to Marcus. Here a peer says he sometimes approves PRs within a minute. That's a teamwork problem as well as a quality one. And in his July 1:1 he said quality issues are QA's job. That's the mindset I need to change."
 
-▶ Pick 4 for her final rating.
+▶ Scroll down to Jordan. Trace the on-call line.
 
-"I'm giving her a 4, Exceeds, not a 5. She's excellent, but her impact is still inside our team. A 5 needs impact beyond it. The ledger design she wants to lead next half could get her there."
+"Scrolling down to Jordan. A peer says he handled the payment gateway timeout on-call really calmly, only seven months in. In his September 1:1 he asked to own a full feature next half."
 
-▶ For Marcus, pick: Delivery 5, Quality 2, Teamwork 3, Growth 3.
+▶ Scroll down to Elena. Trace both lines.
 
-"Marcus: delivery 5, he really does ship. Quality 2, because of the rework and the incidents. Teamwork 3 and growth 3."
-
-▶ Point at 3.40, then pick 3 for his final rating.
-
-"That's 3.4, so a 3, Meets. I don't want to reward speed when it creates work for everyone else."
-
-▶ For Jordan, pick: Delivery 3, Quality 3, Teamwork 4, Growth 4.
-
-"Jordan: delivery 3 and quality 3, which is right where an Engineer One should be. Teamwork 4 and growth 4, because he's improving fast."
-
-▶ Point at 3.35, then pick 3 for his final rating.
-
-"3.35, so a 3, Meets. That's a really solid half for someone this new."
-
-▶ For Elena, pick: Delivery 2, Quality 3, Teamwork 2, Growth 2.
-
-"Elena: delivery 2 because of the missed commitments. Quality 3, her code is clean. Teamwork 2 and growth 2."
-
-▶ Point at 2.30, then pick 2 for her final rating.
-
-"2.3, so a 2, Partially meets. She needs a clear plan, and I'll set one up with her."
-
-▶ Point at the Spread check, then at "Within guide? Yes".
-
-"Last check. One person at 4 or above, and the guide allows one. So we're within the guide."
-
-▶ Click File, then Download, then Microsoft Excel.
-
-"I'll download the workbook with File, Download, Microsoft Excel."
+"And scrolling down to Elena. A peer says she goes quiet when she's blocked. And in her July 1:1 she told me she doesn't like interrupting people with questions. So this isn't a skill issue. Another peer says her code is clean. She needs to ask for help sooner."
 
 ---
 
-## Part 5: Docs, the review summary (about 5 min)
+## Part 4: Sheets, scoring and final ratings
 
-▶ Click the summary template tab at the top of Firefox.
+▶ Move to the tab bar and click Tab 1. Then move to the bottom and click the **Ratings** tab.
 
-"Last part is the summary. I'll switch to the template tab."
+"Now I'll score everyone. I'm moving up to the tab bar and clicking the first tab to go back to the workbook. Then I'm moving down to the bottom and clicking the Ratings tab, the third one."
 
-▶ Under Priya, type after each label:
-- Rating: `4, Exceeds`
-- Why: `Strong delivery, best reviewer on the team, and mentored Jordan.`
-- Goal for next half: `Lead the ledger migration design and hand off some reviews.`
+▶ Point across row 4, the headers.
 
-"For Priya, the rating, why, and her goal for next half."
+"Row 4 has the columns: Delivery, Quality, Teamwork and Growth, then Weighted score, which calculates itself, Final rating, and the rating label."
 
-▶ Under Marcus:
-- `3, Meets`
-- `Ships fast, but 41% rework and 3 incidents.`
-- `Add tests to every PR and get rework under 20%.`
+**Priya (row 5):**
 
-▶ Under Jordan:
-- `3, Meets`
-- `Solid for 7 months in. Getting faster every month.`
-- `Own one full feature end to end.`
+▶ Click C5. Point at the small arrow, click it, and choose 4.
 
-▶ Under Elena:
-- `2, Partially meets`
-- `Clean code, but missed commitments and goes quiet when blocked.`
-- `Raise blockers within a day, and weekly pairing with Priya.`
+"I'm clicking cell C5, which is Priya's Delivery. A small upside-down arrow appears on the right side of the cell. I'm clicking that arrow to open the dropdown and selecting 4. She met 92 percent of her commitments, which is strong but not perfect."
 
-"Between each person, I'll just read back what I wrote to make sure it matches the sheet."
+▶ Click D5, click the arrow, and choose 5.
 
-▶ Scroll through the whole doc slowly.
+"Moving one cell right to D5, Quality. Clicking the dropdown arrow and choosing 5. Only 12 percent rework and no incidents."
 
-"A quick read-through. Everything lines up with the ratings."
+▶ Click E5, click the arrow, and choose 5.
 
-▶ Click File, then Download, then PDF Document.
+"Next is E5, Teamwork. Dropdown arrow, then 5. She did 88 reviews and mentored Jordan."
 
-"I'll download it as a PDF with File, Download, PDF Document."
+▶ Click F5, click the arrow, and choose 4.
 
-▶ Click the feedback notes tab, then File, Download, PDF Document.
+"And F5, Growth. Dropdown arrow, then 4. She's ready to lead the ledger design next half."
 
-"And I'll save the highlighted notes as a PDF too."
+▶ Point at G5.
+
+"Column G, her weighted score, now shows 4.5."
+
+▶ Click H5, click the arrow, and choose 4.
+
+"Now H5, Final rating. Clicking the arrow and choosing 4, not 5. A 5 needs impact beyond the team, and hers is still inside it. Column I now says Exceeds."
+
+**Marcus (row 6):**
+
+▶ Click C6, then the arrow, then 5.
+
+"Down to row 6 for Marcus. I'm clicking C6, Delivery, opening the dropdown with the arrow and choosing 5. He really does ship."
+
+▶ Click D6, then the arrow, then 2.
+
+"D6, Quality. Dropdown arrow, then 2. That's for 41 percent rework and 3 incidents."
+
+▶ Click E6, then the arrow, then 3. Click F6, then the arrow, then 3.
+
+"E6, Teamwork, I'm choosing 3. And F6, Growth, also 3."
+
+▶ Point at G6. Then click H6, the arrow, and 3.
+
+"His weighted score in G6 is 3.4. In H6 I'm opening the dropdown and choosing 3, Meets. I don't want to reward speed when it creates rework for everyone else."
+
+**Jordan (row 7):**
+
+▶ Click C7, the arrow, 3. Click D7, the arrow, 3.
+
+"Row 7, Jordan. I'm clicking C7, Delivery, opening the dropdown and choosing 3. That's right where an Engineer One should be. D7, Quality, also 3."
+
+▶ Click E7, the arrow, 4. Click F7, the arrow, 4.
+
+"E7, Teamwork, I'm choosing 4 for how he handled on-call. And F7, Growth, 4, because his cycle time more than halved."
+
+▶ Point at G7. Then click H7, the arrow, and 3.
+
+"G7 shows 3.35. In H7 I'm choosing 3, Meets. A really solid half for someone seven months in."
+
+**Elena (row 8):**
+
+▶ Click C8, the arrow, 2. Click D8, the arrow, 3.
+
+"Row 8, Elena. C8, Delivery, I'm opening the dropdown and choosing 2, for the missed commitments. D8, Quality, 3. Her code is clean when it lands."
+
+▶ Click E8, the arrow, 2. Click F8, the arrow, 2.
+
+"E8, Teamwork, 2, because she only did 9 reviews and goes quiet when blocked. And F8, Growth, 2."
+
+▶ Point at G8. Then click H8, the arrow, and 2.
+
+"G8 is 2.3. In H8 I'm choosing 2, Partially meets. She needs a clear plan, and I'll set one up with her."
+
+**Spread check:**
+
+▶ Move down to rows 12 to 14 and point at each one.
+
+"I'm moving down to the spread check in rows 12 to 14. One person is rated 4 or higher. The guide allows one. And row 14 says Yes, within guide."
+
+▶ Click **File** at the top left, then **Download**, then **Microsoft Excel (.xlsx)**.
+
+"I'm moving to the File menu at the top left of Google Sheets, clicking it, hovering over Download, and clicking Microsoft Excel to save a copy of the workbook."
 
 ---
 
-## Epilogue (about 3 min, the mouse can rest)
+## Part 5: Docs, the review summary
 
-"So, to wrap up. I rated my four engineers for the half: Priya a 4, Marcus and Jordan a 3, and Elena a 2. Each of them has one clear goal for next half.
+▶ Move to the tab bar and click Tab 3.
 
-I checked my work in two ways. Every rating lines up with the numbers and the feedback, and the team spread stays within our guide.
+"Last part. I'm moving up to the tab bar and clicking the third tab, my review summary template."
 
-My approach was to look at the numbers first, then read the feedback, because the numbers alone can fool you. Marcus looked like the top performer on paper, but the rework and incidents told a different story.
+▶ For each person, click at the end of each label, then type. Say what you're doing as you go.
 
-The hardest call was Priya. Her score was 4.5, and I could have given her a 5. But a 5 should mean impact beyond the team, and I want to keep that meaningful.
+**Priya:**
 
-One weakness is that this only covers six months of data. For Elena especially, I'd want to talk with her before the rating is final, to make sure I'm not missing something going on outside work.
+"Under Priya's heading, I'm clicking at the end of the Rating line and typing 4, Exceeds."
+⌨️ `4, Exceeds`
 
-If I had to give one tip to a newer lead: don't confuse being busy with being effective. The person with the most PRs isn't always the one helping the team the most."
+"Clicking at the end of the Why line and typing the reason."
+⌨️ `Strong delivery, best reviewer on the team, and mentored Jordan.`
 
-▶ Bring TaskRecorder forward and click Stop Recording. Wait until it says Idle.
+"And at the end of Goal for next half."
+⌨️ `Lead the ledger migration design and hand off some reviews.`
+
+**Marcus:**
+
+"Moving down to Marcus. Clicking after Rating."
+⌨️ `3, Meets`
+
+"After Why."
+⌨️ `Ships fast, but 41% rework and 3 incidents.`
+
+"After Goal."
+⌨️ `Add tests to every PR and get rework under 20%.`
+
+**Jordan:**
+
+"Down to Jordan. After Rating."
+⌨️ `3, Meets`
+
+"After Why."
+⌨️ `Solid for 7 months in, and getting faster every month.`
+
+"After Goal."
+⌨️ `Own one full feature end to end.`
+
+**Elena:**
+
+"And Elena. After Rating."
+⌨️ `2, Partially meets`
+
+"After Why."
+⌨️ `Clean code, but missed commitments and goes quiet when blocked.`
+
+"After Goal."
+⌨️ `Raise blockers within a day, and weekly pairing with Priya.`
+
+▶ Scroll back up to the top and move the cursor down the page slowly.
+
+"I'm scrolling back to the top and reading down the page to check that every rating matches the sheet. Priya 4, Marcus 3, Jordan 3, Elena 2. All good."
+
+▶ Click **File**, then **Download**, then **PDF Document (.pdf)**.
+
+"I'm clicking the File menu at the top left, hovering over Download, and clicking PDF Document to save the summary."
+
+---
+
+## Epilogue (3 to 4 minutes, max 4:00; the mouse can rest)
+
+"So, to wrap up. The task was to decide half-year ratings for my four engineers and give each one a goal for next half. Priya got a 4, Marcus and Jordan a 3, and Elena a 2.
+
+To check my work, I made sure every rating lines up with both the numbers and the feedback, and the spread check confirmed we're within the guide.
+
+My approach was numbers first, then feedback, because numbers alone can mislead you. Marcus looked like the top performer on paper, but the rework and incidents told a different story.
+
+The hardest part was Priya. Her score was 4.5 and I could have given her a 5. But I want a 5 to stay meaningful, and it should mean impact beyond the team.
+
+If I did this again, I'd talk to Elena before finalizing her rating. Six months of data might miss something, like what's going on outside work. With more time, I'd also look at a full year of data, not just the half.
+
+And one tip for a newer lead: don't confuse busy with effective. The person with the most PRs isn't always the one helping the team the most."
+
+---
+
+## Ending
+
+▶ Click the **red close button** at the top left of the Firefox window. If it asks to close all tabs, click **Close Tabs**.
+
+"I'm closing my Firefox window with the red button at the top left."
+
+▶ Click TaskRecorder in the Dock, then click **Stop Recording**. Wait until it says Idle.
