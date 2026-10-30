@@ -16,9 +16,9 @@ Final outputs aren't kept here. They're downloaded from Sheets and Docs during t
 ## Deliverables.zip
 
 ```
-input 1 - Team_Performance_Apr-Sep_2026.xlsx
-input 2 - Peer_Feedback_and_1on1_Notes.docx
-input 3 - Review_Summary_Template.docx
+input 1.xlsx
+input 2.docx
+input 3.docx
 final output 1 - Team_Ratings.xlsx
 final output 2 - Team_Review_Summary.pdf
 ```
