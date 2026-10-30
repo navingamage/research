@@ -11,6 +11,8 @@ Apps: Google Sheets, Google Docs
 | `upload/final-notes.txt` | Paste into Studio Final Notes |
 | `upload/inputs/` | Upload all 3 to Google Drive with your mercor.expert account and open them as Google Sheets/Docs before recording |
 
+Final outputs aren't kept here. They're downloaded from Sheets and Docs during the recording; rename them to the names below before zipping.
+
 ## Deliverables.zip
 
 ```
