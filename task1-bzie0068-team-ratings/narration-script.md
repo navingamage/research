@@ -1,6 +1,11 @@
-# Script: half-year ratings for my team (re-record version)
+# Script: half-year ratings for my team (re-record version 2)
 
-**What changed after review:**
+**What changed after review 2:**
+1. Downloads must not open in Excel or Preview. Set Firefox to save them (setup step 1). If Excel opens anyway, quit it straight away (backup lines in Part 4 and Part 5).
+2. Close the Studio window and Insightful's window before you start. Leave Insightful running.
+3. Keep the Firefox theme. The reviewer accepted it as the UI change.
+
+**What changed after review 1:**
 1. Minimize TaskRecorder first, before the intro.
 2. Close the Goal doc window instead of minimizing it.
 3. Describe every mouse move and click: what you're doing, where it is on screen, and why.
@@ -17,14 +22,16 @@
 
 ## Setup before you press Start (not recorded)
 
-1. Open one Firefox window with 3 tabs, in this order:
+1. **Stop downloads opening in other apps.** In Firefox, open Settings, then General, then Files and Applications. Set the Action for **Microsoft Excel Worksheet** and for **Portable Document Format (PDF)** to **Save File**. If there's no Excel row yet, download any sheet as Excel once so the row appears, then set it. Delete that test file from Downloads.
+2. **Clean the Dock.** Close the Studio browser window and close Insightful's window, but leave Insightful running. Don't minimize them, because minimized windows show up as previews in the Dock. In System Settings, then Desktop & Dock, turn off "Show suggested and recent apps in Dock".
+3. Open one Firefox window with 3 tabs, in this order:
    - Tab 1: the workbook, on the **Rating Guide** tab
    - Tab 2: the feedback notes doc
    - Tab 3: the summary template doc
-2. **Minimize** that Firefox window with its yellow button so it sits in the Dock.
-3. Open the Goal doc (Google Docs) in a **separate** Firefox window. It should be the only window visible.
-4. Open TaskRecorder on top of the Goal doc. Paste the Goal, add the apps Google Sheets and Google Docs, and select the microphone.
-5. Quit everything else. Turn Do Not Disturb on.
+4. **Minimize** that Firefox window with its yellow button so it sits in the Dock.
+5. Open the Goal doc (Google Docs) in a **separate** Firefox window. It should be the only window visible.
+6. Open TaskRecorder on top of the Goal doc. Paste the Goal, add the apps Google Sheets and Google Docs, and select the microphone.
+7. Quit everything else, including Excel, Numbers and Preview. Turn Do Not Disturb on. Check the Dock: the only window previews should be the minimized Firefox work window.
 
 ---
 
@@ -142,6 +149,8 @@
 
 "I'm moving to the File menu at the top left of Google Sheets, clicking it, hovering over Download, and clicking Microsoft Excel to save a copy of the workbook."
 
+*Only if Excel opens on its own:* "Excel opened the download automatically, and I don't need it, so I'm moving to the Excel menu at the top left of the screen and clicking Quit Excel. Now I'm back in Firefox."
+
 ---
 
 ## Part 5: Docs, the review summary
@@ -195,6 +204,8 @@
 "I'm scrolling back to the top and reading down the page to check that every rating matches the sheet. Priya 4, Marcus 3, Jordan 3, Elena 2. All good."
 
 "I'm clicking the File menu at the top left, hovering over Download, and clicking PDF Document to save the summary."
+
+*Only if Preview or a new PDF tab opens on its own:* "The PDF opened automatically, and I don't need it, so I'm closing it." For Preview, use the Preview menu at the top left and click Quit Preview. For a new Firefox tab, click the small x on that tab.
 
 ---
 
