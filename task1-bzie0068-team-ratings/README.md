@@ -7,7 +7,7 @@ Apps: Google Sheets, Google Docs
 | `studio-idea.md` | Paste into Studio, Describe your idea. Apps: Google Sheets, Google Docs |
 | `goal.txt` | Goal text, word for word, for the Goal doc, TaskRecorder and the Metadata.rtf Request section. If the approved version differs, use the approved one everywhere |
 | `narration-script.md` | The script for the dry run and the recording |
-| `upload/Metadata.rtf` | Upload on its own in Studio, not in Deliverables.zip |
+| `upload/Metadata.rtf` | Upload on its own in Studio, not in Deliverables.zip. Topology is one line, tags in capitals, e.g. `Google Sheets (LOOKUP) -> Google Docs (CREATE)` |
 | `upload/final-notes.txt` | Paste into Studio Final Notes |
 | `upload/inputs/` | Upload all 3 to Google Drive with your mercor.expert account and open them as Google Sheets/Docs before recording |
 

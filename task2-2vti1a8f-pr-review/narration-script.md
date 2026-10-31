@@ -7,6 +7,7 @@
 - Say the mouse movement out loud every time: "I'm moving my mouse to...", "I'm clicking...".
 - Move slowly, pause on the thing you're naming, and pause about a second after each click.
 - If you use a keyboard shortcut, say it out loud first ("I'm pressing Command S to save").
+- **Always say the exact location.** In code, say the file and the line number from the left edge of the editor ("line 21 of refunds dot py"). The reviewer has to be able to follow you without seeing the screen.
 - Do one full dry run. VS Code's layout can differ a little by version, so adjust the wording to what you actually see.
 
 ---
@@ -61,25 +62,25 @@
 
 "I'm clicking config dot py first. It opens side by side. The old version is on the left and Sam's version is on the right, and the new lines are highlighted in green."
 
-"He's added two settings. Max attempts is 3, and the retry delay is 2 seconds. That's fine. Keeping them in config means we can tune them without changing code."
+"I'm pointing at lines 3 to 5 on the right. He's added a comment and two settings. On line 4, max attempts is 3, and on line 5, the retry delay is 2 seconds. That's fine. Keeping them in config means we can tune them without changing code."
 
 **refunds.py**
 
 "Now I'm clicking refunds dot py in the Changes list. This is the real change."
 
-"I'm moving my mouse down the right side. Before, we called the processor once, and if it timed out we raised refund failed. Now there's a for loop that tries up to three times."
+"I'm moving my mouse down the right side. On the left, the old version called the processor once, and if it timed out it raised refund failed. On the right, line 18 starts a for loop that tries up to three times, and line 20 calls the processor inside it."
 
-"I'm pointing at the line that says except Exception. That catches every kind of error, not just timeouts. So if the processor rejects a refund, for example because the amount is more than the customer paid, we'll try it again three times. That will never succeed, and it just wastes time."
+"I'm pointing at line 21 on the right, the line that says except Exception. That catches every kind of error, not just timeouts. So if the processor rejects a refund, for example because the amount is more than the customer paid, we'll try it again three times. That will never succeed, and it just wastes time."
 
-"I'm moving to the sleep line under it. The wait is the delay times the attempt number, so zero, then 2 seconds, then 4. It also sleeps after the last attempt, which is pointless."
+"I'm moving down to line 26, the sleep line. The wait is the delay times the attempt number, so zero, then 2 seconds, then 4. It also sleeps after the last attempt, which is pointless. And line 28 raises refund failed once all three attempts are used up."
 
-"And the big one. I'm pointing at the line that calls processor dot refund. Every attempt calls it the same way, with no idempotency key. A timeout doesn't mean the refund failed. It means we don't know. If the processor did the refund and we just didn't get the answer back, the retry refunds the customer a second time. That's real money going out twice."
+"And the big one. I'm moving back up to line 20, the line that calls processor dot refund. Every attempt calls it the same way, with no idempotency key. A timeout doesn't mean the refund failed. It means we don't know. If the processor did the refund and we just didn't get the answer back, the retry refunds the customer a second time. That's real money going out twice."
 
 **test_refunds.py**
 
 "I'm clicking test underscore refunds dot py, the third file."
 
-"He's added a test called test retries after timeout. I'm pointing at the first line inside it. The fake processor times out before it does anything, then the retry goes through. That's a good test, but it only covers the easy case where nothing happened on the first call. It doesn't cover the case where the refund went through and only the response was lost."
+"He's added a test at lines 19 to 23 called test retries after timeout. I'm pointing at line 20, the first line inside it. The fake processor times out before it does anything, then the retry goes through. Line 23 checks the processor was called twice. That's a good test, but it only covers the easy case where nothing happened on the first call. It doesn't cover the case where the refund went through and only the response was lost."
 
 ---
 
@@ -91,7 +92,7 @@
 
 *[wait for the tests to finish]*
 
-"All three tests have green ticks: refund succeeds, rejects zero amount, and Sam's new retry test. So the tests are green, but I already know there's a bug. I want a test that shows it, so it can't come back later."
+"In the Testing panel, under refund service, then tests, then test refunds dot py, all three tests have green ticks: refund succeeds, rejects zero amount, and Sam's new retry test. So the tests are green, but I already know there's a bug. I want a test that shows it, so it can't come back later."
 
 ---
 
@@ -99,36 +100,36 @@
 
 "I'm clicking the Explorer icon at the top of the Activity Bar, the one that looks like two pages."
 
-"In the file tree I'm moving my mouse to the tests folder, right-clicking it, and choosing New File."
+"In the file tree on the left, under refund service, I'm moving my mouse to the tests folder, right-clicking it, and choosing New File."
 
 "I'm typing the file name, test underscore refund underscore retries dot py, and pressing Return."
 ⌨️ `test_refund_retries.py`
 
 *Typing tips: press Return after each ⌨️ line, and leave one empty line between the imports and the def line. VS Code indents the lines after `def` for you, so don't type those leading spaces yourself. It also adds closing brackets and quotes as you type, so just keep typing over them.*
 
-"First, the two imports. The refund service, and the fake processor we use in tests."
+"First, the two imports on lines 1 and 2. The refund service, and the fake processor we use in tests."
 ⌨️ `from refund_service.refunds import RefundService`
 ⌨️ `from tests.fakes import FakeProcessor`
 
-"Now the test. The fake processor has an option called lose first responses. It does the refund, then times out before we hear back. That's exactly the case I'm worried about."
+"Now the test, starting on line 5. The fake processor has an option called lose first responses. It does the refund, then times out before we hear back. That's exactly the case I'm worried about."
 ⌨️ `def test_retry_does_not_refund_twice():`
 ⌨️ `    processor = FakeProcessor(lose_first_responses=1)`
 
-"Then I issue one refund of 40 dollars, which is 4000 cents."
+"Line 7. I issue one refund of 40 dollars, which is 4000 cents."
 ⌨️ `    RefundService(processor).issue_refund("pay_300", 4000)`
 
-"And the customer should only be refunded once."
+"And line 8. The customer should only be refunded once."
 ⌨️ `    assert len(processor.refunds) == 1`
 
 "I'm moving to the File menu at the top left, and clicking Save."
 
-"Back to the Testing panel. I'm clicking the beaker icon on the left. The new test shows up under test refund retries. I'm clicking the Run Tests button with the two play arrows at the top again."
+"Back to the Testing panel. I'm clicking the beaker icon on the left. The new test shows up in the tree, under test refund retries dot py. I'm clicking the Run Tests button with the two play arrows at the top again."
 
 *[wait for the tests to finish]*
 
 "Three green ticks and one red cross. The red one is my new test. I'm clicking it to see why."
 
-"The message says it expected 1 refund and got 2. Same payment, same amount, twice. So that's the bug, proven. The test fails now, and it will pass once Sam sends an idempotency key on every attempt."
+"The error points at line 8 of test refund retries dot py, the assert line. It says it expected 1 refund and got 2. Same payment, same amount, twice. So that's the bug, proven. The test fails now, and it will pass once Sam sends an idempotency key on every attempt."
 
 "I'm done in VS Code. I'm closing the VS Code window with the red button at the top left."
 
@@ -138,24 +139,24 @@
 
 "I'm moving to the Dock and clicking the Firefox window there to open my review template in Google Docs."
 
-"This is the template I use for code reviews. The change, the author and the reviewer are filled in already. I'll fill in the rest."
+"This is the template I use for code reviews. At the top, under the title, the Change, Author and Reviewer lines are filled in already. I'll fill in the rest from the Decision line down."
 
-"I'm clicking at the end of the Decision line and typing."
+"I'm clicking at the end of the Decision line, the fourth line under the title, and typing."
 ⌨️ `Request changes`
 
-"Under What's good, I'm clicking on the empty bullet. I always start with what's good, especially for a junior engineer."
+"Under the What's good heading, I'm clicking on the empty bullet. I always start with what's good, especially for a junior engineer."
 ⌨️ `Small, focused change with a test, and every failed attempt is logged.`
 
-"Under Must fix before merge, I'm clicking on the first numbered line."
-⌨️ `Create one idempotency key per refund before the loop and send it on every attempt. Without it a retry can refund twice. test_refund_retries.py shows it.`
+"Under the Must fix before merge heading, I'm clicking on the empty line numbered 1."
+⌨️ `Create one idempotency key per refund before the loop and send it on every attempt (refunds.py line 20). Without it a retry can refund twice. test_refund_retries.py shows it.`
 
-"And the second numbered line."
-⌨️ `Only retry ProcessorTimeout. Catching Exception retries rejected refunds too.`
+"And the line numbered 2."
+⌨️ `Only retry ProcessorTimeout. Catching Exception on line 21 retries rejected refunds too.`
 
-"Under Nice to have, I'm clicking on the bullet."
+"Under the Nice to have heading, I'm clicking on the empty bullet."
 ⌨️ `Don't sleep after the last attempt, and add a test for a rejected refund.`
 
-"And the last section, Something to learn from this. I'm clicking on the empty line under it. This is the part I care about most, because it's the lesson Sam can use again."
+"And the last heading at the bottom, Something to learn from this. I'm clicking on the empty line under it. This is the part I care about most, because it's the lesson Sam can use again."
 ⌨️ `A timeout doesn't mean it failed. It means we don't know. Before you retry anything that moves money, ask what happens if the first call worked.`
 
 "I'm scrolling back to the top and reading down to check it. The decision, two must-fix items that both point at real lines in the change, a nice-to-have, and the lesson. All good."

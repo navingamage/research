@@ -7,6 +7,7 @@
 - Say the mouse movement out loud every time: "I'm moving my mouse to...", "I'm clicking...".
 - Move slowly, pause on the thing you're naming, and pause about a second after each click.
 - If you use a keyboard shortcut, say it out loud first.
+- **Always say the exact location**: which heading, which bullet (first, second, third), and in draw.io where on the canvas (left, middle, right, above, below which box). The reviewer has to be able to follow you without seeing the screen.
 - Do one full dry run, mainly to practise the draw.io part: dragging shapes, connecting arrows and labelling them.
 
 **draw.io basics (practise these before recording):**
@@ -46,23 +47,23 @@
 
 "I'm moving my mouse to the Dock on the left side of the screen and clicking the Firefox window there. It opens on the first tab, the problem brief in Google Docs."
 
-"I'm moving down to What happens today. The card processor sends us an event every time a payment or refund changes. Our handler replies 200 straight away and hands the event to a background thread in memory. If the server restarts before that thread finishes, the event is gone. And because we already said 200, the processor never sends it again."
+"I'm moving down to the first heading, What happens today, and pointing at the first paragraph under it. The card processor sends us an event every time a payment or refund changes. Our handler replies 200 straight away and hands the event to a background thread in memory. I'm moving to the second paragraph. If the server restarts before that thread finishes, the event is gone. And because we already said 200, the processor never sends it again."
 
-"Moving down to The numbers. I'm pointing at the second bullet. About 45 payments a week get stuck as pending, and support spends about 15 hours a week fixing them by hand. That's the cost of doing nothing."
+"Moving down to the second heading, The numbers. I'm pointing at the second bullet. About 45 payments a week get stuck as pending, and support spends about 15 hours a week fixing them by hand. That's the cost of doing nothing."
 
 "The third bullet. Servers restart about 25 times a week. So this isn't rare bad luck. It happens every time we deploy."
 
 "And the fourth bullet. This one's important. Handling an event takes 300 milliseconds normally, but up to 12 seconds at peak, because of ledger service."
 
-"Moving down to What the processor does. We have to reply within 10 seconds, or it counts as failed. It retries for up to an hour. And every event has a unique event ID, but the same event can arrive more than once. So whatever we build has to handle duplicates."
+"Moving down to the third heading, What the processor does. In the first bullet, we have to reply within 10 seconds, or it counts as failed. The second bullet says it retries for up to an hour. And the third bullet says every event has a unique event ID, but the same event can arrive more than once. So whatever we build has to handle duplicates."
 
-"Now the three options. I'm pointing at Option A. Do all the work before replying 200. That's the simplest. But 12 seconds at peak is more than the 10-second limit. So at peak the processor would think it failed and send it again while we're still working on the first one."
+"Now the fourth heading, Options we've talked about. I'm pointing at the first bullet, Option A. Do all the work before replying 200. That's the simplest. But 12 seconds at peak is more than the 10-second limit. So at peak the processor would think it failed and send it again while we're still working on the first one."
 
-"Option B. Save the raw event in an inbox table first, reply 200, and then process it from a queue with a retry worker. Anything that keeps failing goes to a dead letter queue. Saving to the database takes a few milliseconds, so we'll always answer well within 10 seconds, and nothing lives only in memory."
+"The second bullet, Option B. Save the raw event in an inbox table first, reply 200, and then process it from a queue with a retry worker. Anything that keeps failing goes to a dead letter queue. Saving to the database takes a few milliseconds, so we'll always answer well within 10 seconds, and nothing lives only in memory."
 
-"Option C. Keep today's flow and fix stuck payments every night from the processor's report. It catches everything eventually, but a customer could wait up to a day, and support would still see the problem."
+"The third bullet, Option C. Keep today's flow and fix stuck payments every night from the processor's report. It catches everything eventually, but a customer could wait up to a day, and support would still see the problem."
 
-"And the limits at the bottom. It has to ship this quarter, and we already run Postgres and Pub/Sub. Option B only uses those two, so it fits."
+"And the last heading at the bottom, Limits. It has to ship this quarter, and we already run Postgres and Pub/Sub. Option B only uses those two, so it fits."
 
 "I'm going with Option B. I'm minimizing Firefox with the yellow button at the top left, because I'll be back in it later."
 
@@ -72,9 +73,9 @@
 
 "I'm moving to the Dock and clicking the draw.io window to open our current architecture diagram."
 
-"I'm moving my mouse along the flow from left to right. The card processor sends the webhook to the load balancer, then to the webhook handler in the payments API."
+"I'm moving my mouse along the flow from left to right across the middle of the canvas. The grey card processor box on the far left sends the webhook to the load balancer, then to the blue webhook handler box in the payments API."
 
-"I'm pointing at the red dashed box, the background thread in memory. The arrow into it says hand off, reply 200 right away. From there it updates the payment in the payments database and posts the ledger entry."
+"I'm pointing at the red dashed box to the right of the handler, the background thread in memory. The arrow into it says hand off, reply 200 right away. From there, one arrow goes up to the green payments database on the top right, and one goes down to the green ledger service on the bottom right."
 
 "This red box is exactly where we lose events. It only exists in the server's memory. A restart wipes it, and we've already said 200."
 
@@ -86,48 +87,48 @@
 
 **The inbox table**
 
-"In the shape panel on the left, under General, I'm finding the cylinder, which is the database shape. I'm dragging it onto the canvas, below the webhook handler."
+"In the shape panel on the left side of the window, under General, I'm finding the cylinder, which is the database shape. I'm dragging it onto the canvas, below the webhook handler."
 
 "I'm double-clicking it and typing the label, then clicking an empty part of the canvas."
 ⌨️ `webhook_inbox (Postgres)`
 
-"Now I'm hovering over the webhook handler. Four small blue arrows appear around it. I'm dragging the bottom blue arrow down onto the inbox table to connect them."
+"Now I'm hovering over the blue webhook handler box. Four small blue arrows appear around it. I'm dragging the bottom blue arrow down onto the inbox table to connect them."
 
 "I'm double-clicking the new arrow and labelling it. This is step one: save the event first."
 ⌨️ `1. save event, then reply 200`
 
 **The queue**
 
-"Back in the shape panel, I'm dragging a rectangle onto the canvas, to the right of the webhook handler, where the background thread used to be."
+"Back in the shape panel on the left, under General, I'm dragging the rectangle, the first shape, onto the canvas, to the right of the webhook handler, where the background thread used to be."
 
 "Double-clicking it to label it."
 ⌨️ `Pub/Sub: webhook-events`
 
-"Hovering over the webhook handler and dragging the right blue arrow onto the queue."
+"Hovering over the webhook handler and dragging the blue arrow on its right side onto the queue."
 
 "Double-clicking that arrow to label it."
 ⌨️ `2. publish event_id`
 
 **The retry worker**
 
-"Dragging another rectangle onto the canvas, to the right of the queue."
+"Dragging another rectangle from the shape panel onto the canvas, to the right of the queue and to the left of the database and ledger boxes."
 
 "Double-clicking to label it."
 ⌨️ `Webhook worker (retries with backoff)`
 
-"Hovering over the queue and dragging its right blue arrow onto the worker."
+"Hovering over the queue and dragging the blue arrow on its right side onto the worker."
 
-"Now the worker does what the background thread used to do. I'm hovering over the worker and dragging a blue arrow onto the Payments DB."
+"Now the worker does what the background thread used to do. I'm hovering over the worker and dragging the blue arrow on its top onto the Payments DB on the top right."
 
 "Double-clicking that arrow."
 ⌨️ `update payment, skip seen event_id`
 
-"And one more from the worker to the Ledger service."
+"And one more, from the blue arrow on the worker's right side to the Ledger service on the bottom right. Double-clicking it to label it."
 ⌨️ `post ledger entry`
 
 **The dead letter queue**
 
-"Last, the dead letter queue. I'm dragging a rectangle below the worker."
+"Last, the dead letter queue. I'm dragging a rectangle from the shape panel to below the worker."
 
 "Double-clicking to label it."
 ⌨️ `Dead letter queue + alert`
@@ -137,7 +138,7 @@
 "Double-clicking that arrow."
 ⌨️ `after 5 failed tries`
 
-"I'm double-clicking the title at the top and changing current to proposed."
+"I'm double-clicking the title at the top left of the canvas and changing current to proposed."
 ⌨️ `Payments: card processor webhook flow (proposed)`
 
 "I'm moving my mouse along the new flow to check it. The handler saves the event and replies, the event ID goes on the queue, the worker processes it and retries if it fails, and anything that keeps failing goes to the dead letter queue and alerts us. Nothing lives only in memory anymore."
@@ -159,22 +160,22 @@
 
 "I'm moving to the Dock and clicking the Firefox window. I'm clicking the second tab at the top, the decision record template."
 
-"I'm clicking at the end of the Status line."
+"I'm clicking at the end of the Status line, the first line under the title."
 ⌨️ `Proposed`
 
-"I'm clicking on the empty line under Context."
+"I'm clicking on the empty line under the Context heading."
 ⌨️ `A restart drops webhooks we've already replied 200 to. About 45 payments a week get stuck, and the processor never retries them.`
 
-"I'm clicking on the empty line under Decision."
+"I'm clicking on the empty line under the Decision heading."
 ⌨️ `Option B. Save each webhook in webhook_inbox before replying 200, then process it from Pub/Sub with a retry worker and a dead letter queue.`
 
-"Under Why not the other options, I'm clicking at the end of the Option A bullet."
+"Under the Why not the other options heading, I'm clicking at the end of the first bullet, Option A."
 ⌨️ `At peak, handling takes up to 12 seconds, over the 10 second limit, so the processor would retry and send duplicates.`
 
-"And at the end of the Option C bullet."
+"And at the end of the second bullet, Option C."
 ⌨️ `Customers could wait up to a day. Worth adding later as a safety net.`
 
-"Under Risks and follow-ups, I'm clicking on the first bullet. If a server crashes after saving but before publishing, the event sits in the inbox and nobody picks it up. So we need a sweeper."
+"Under the last heading, Risks and follow-ups, I'm clicking on the first bullet. If a server crashes after saving but before publishing, the event sits in the inbox and nobody picks it up. So we need a sweeper."
 ⌨️ `Crash between saving and publishing: a sweeper re-publishes inbox rows not done after 5 minutes.`
 
 "And the second bullet. The processor can send the same event twice."

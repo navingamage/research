@@ -7,7 +7,7 @@ Apps: Visual Studio Code, Google Docs
 | `studio-idea.md` | The approved idea text, for reference |
 | `goal.txt` | Goal text, word for word, for the Goal doc, TaskRecorder and the Metadata.rtf Request section |
 | `narration-script.md` | Setup steps and the script for the dry run and the recording |
-| `upload/Metadata.rtf` | Upload on its own in Studio, not in Deliverables.zip |
+| `upload/Metadata.rtf` | Upload on its own in Studio, not in Deliverables.zip. Topology is one line, tags in capitals, e.g. `Google Sheets (LOOKUP) -> Google Docs (CREATE)` |
 | `upload/final-notes.txt` | Paste into Studio Final Notes |
 | `upload/inputs/input 1.zip` | The refund-service project with the junior's changes. Unzip it in Downloads (setup step 3) |
 | `upload/inputs/input 2.docx` | Review template. Upload to Google Drive with your mercor.expert account and open it as a Google Doc |

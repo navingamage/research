@@ -7,7 +7,7 @@ Apps: draw.io, Google Docs
 | `studio-idea.md` | The approved idea text, for reference |
 | `goal.txt` | Goal text, word for word, for the Goal doc, TaskRecorder and the Metadata.rtf Request section |
 | `narration-script.md` | Setup steps, draw.io basics and the script for the dry run and the recording |
-| `upload/Metadata.rtf` | Upload on its own in Studio, not in Deliverables.zip |
+| `upload/Metadata.rtf` | Upload on its own in Studio, not in Deliverables.zip. Topology is one line, tags in capitals, e.g. `Google Sheets (LOOKUP) -> Google Docs (CREATE)` |
 | `upload/final-notes.txt` | Paste into Studio Final Notes |
 | `upload/inputs/input 1.docx` | Problem brief. Upload to Google Drive with your mercor.expert account and open it as a Google Doc (tab 1) |
 | `upload/inputs/input 2.drawio` | Current architecture diagram. Copy it to `Webhook flow.drawio` and open the copy in the draw.io desktop app (setup step 4) |
