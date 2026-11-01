@@ -1,0 +1,45 @@
+# Repo vetting log
+
+Checked 2026-10-31 to 2026-11-01. Method:
+- **Blobless clone** (`git clone --filter=blob:none --no-checkout`), then `git ls-tree` at HEAD and at the candidate pin.
+- **AI files:** `CLAUDE.md`, `AGENTS.md`, `.claude/`, `.cursor`, `copilot-instructions`, `GEMINI.md`.
+- **AI commits:** `Co-authored-by:` lines naming Claude, Copilot, Cursor, Codex, Devin or GPT. I recorded the count and the date of the first one.
+- **Build sources:** every `<repository>`/`maven { url }` in the build files, with parent and dependency versions checked on repo1.maven.org.
+- **Gap:** grep of main code, plus `git log --grep` across all history, at the pin and at upstream HEAD.
+
+## Kept
+
+| Repo | Pin | Language / build | Size | AI at pin | Build sources | Notes |
+|---|---|---|---|---|---|---|
+| spiral-project/ihatemoney | `e66a7672e8e5c41549bf53c4a824c72c43ab9079` (2026-08-07) | Python, Flask, SQLAlchemy, Alembic | 235 files, 46 .py, ~3k lines of app code, ~130 pytest tests | none ever | PyPI | Free hosted version, no pricing page. Personal-scale. |
+| apache/fineract | `8a61e30a4521c77a59bc55f598e14c128ffd183a` (2026-02-14) | Java 21, Gradle 8.14 | 4,736 main / 930 test Java files, 266 integration tests | 0 | Maven Central + Gradle plugin portal | AI commits start 2026-02-17, and `AGENTS.md`/`.claude/` appear 2026-07-05, so pin before them. |
+| apache/ofbiz-framework | `f05a0c2268f163573a0e0895ec381593de1283db` (2026-05-10) | Java 17 + Groovy, Gradle 8.14 | 1,147 Java + 484 Groovy, 35 test definitions (embedded Derby) | 0 | Central, maven.restlet.talend.com, packages.atlassian.com, clojars, alfresco public | AI commits start 2026-05-16 (21 since). The Gradle wrapper jar isn't committed, so run `gradle/init-gradle-wrapper.sh` first. |
+| pretix/pretix | `e6f8f178aff537bc32dc7359a5f561b8074a269b` (2026-10-29) | Python, Django 5.2 | 2,747 files, 995 .py source, 182 test modules | none ever | PyPI | It has a hosted product with a pricing page, so it's Enterprise. |
+| killbill/killbill | `cb60779c171391be558cd7aebb1eafea60ad2b82` (2026-08-20) | Java 21, Maven | 1,698 Java / 616 test | 0 (2 Copilot commits come later, 2026-10-19) | Central (parent `killbill-oss-parent 0.147.20`) | The last public-build pin. Later commits need parent 0.147.36, which is only on a login-protected Cloudsmith repo. |
+
+## Rejected
+
+| Repo | Reason |
+|---|---|
+| go-gitea/gitea, go-vikunja/vikunja, netbox-community/netbox, keycloak/keycloak, saleor/saleor, mealie-recipes/mealie, photoprism/photoprism | `AGENTS.md` / `CLAUDE.md` / `.claude` at HEAD |
+| getlago/lago-api | `AGENTS.md` + `CLAUDE.md`, 235 of the last 400 commits AI co-authored |
+| idempiere/idempiere | `AGENTS.md`, `CLAUDE.md`, `.claude/skills` |
+| rundeck/rundeck | `.claude/` docs, and 420 AI co-author trailers across the last 400 commits |
+| inventree/InvenTree | `AGENTS.md` + `CLAUDE.md`, 95 AI commits since 2025-07 |
+| openmrs/openmrs-core | 148 of the last 400 commits AI co-authored |
+| woodpecker-ci/woodpecker | 21 AI co-authored commits |
+| listmonk, gotify | Too small or too few tests for Enterprise |
+| thingsboard | Clean, but 9k files and slow to work with |
+| axelor/axelor-open-suite | Clean, but no root build. It only runs inside the separate axelor-open-webapp repo. |
+| adempiere/adempiere | Clean, but mixed ant/gradle/sbt builds, 243 tests across 15k files, and it needs a seeded DB |
+| metasfresh/metasfresh | Clean, but 46k files with a docker-based build. Too heavy. |
+| BroadleafCommerce | Clean, but it's a framework, not an application |
+| frappe/erpnext | Clean. The retention-billing gap exists, but payment terms can pass for a workaround, and setting up the Frappe bench is heavy. Kept as a backup. |
+| mayswind/ezbookkeeping | 5 AI commits since 2026-03 (pinnable before that). Not explored further. |
+| ananthakumaran/paisa, beancount/fava | Clean, 0 AI commits. Backups for Personal-scale. Gap not researched yet. |
+
+## Ideas dropped during gap checks
+- **Fineract balloon loans:** partly supported already through fixed-principal-percentage instalments (FINERACT-1348, FINERACT-2789).
+- **Kill Bill coupons and discounts:** the catalog already has `DISCOUNT` phases.
+- **Kill Bill expiring credits:** a real gap (`CBADao` has no per-credit tracking), but it's the same repo and the same kind of problem as the minimum-invoice idea.
+- **Healthchecks maintenance windows, Miniflux WebSub:** too easy. See [past-attempts.md](past-attempts.md).
