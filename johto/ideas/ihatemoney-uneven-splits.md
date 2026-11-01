@@ -3,7 +3,7 @@
 - **Repo:** https://github.com/spiral-project/ihatemoney/tree/e66a7672e8e5c41549bf53c4a824c72c43ab9079
 - **Stack:** Python, Flask, SQLAlchemy, Alembic
 - **Domain:** Splitting shared expenses (personal-scale codebase)
-- **Status:** active, next up
+- **Status:** backup. Likely too easy; replaced by the Paisa stock-split idea.
 
 ## Pre-flight (checked 2026-11-01)
 - It's a real application: a self-hostable web app with a REST API for sharing group expenses. It uses Flask, SQLAlchemy, Alembic migrations and sqlalchemy-continuum for history.

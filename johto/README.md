@@ -6,7 +6,8 @@ Research notes for coding tasks set in real open-source applications. Every idea
 
 | Idea | Repo @ pin | Size | Status |
 |---|---|---|---|
-| [Uneven bill splits](ideas/ihatemoney-uneven-splits.md) | spiral-project/ihatemoney @ `e66a7672` | Personal-scale | Active: next up |
+| [Capital gains across stock splits](ideas/paisa-stock-splits.md) | ananthakumaran/paisa @ `18ecd7d5` | Personal-scale | Active: next up |
+| [Uneven bill splits](ideas/ihatemoney-uneven-splits.md) | spiral-project/ihatemoney @ `e66a7672` | Personal-scale | Backup (likely too easy) |
 | [Loan prepayment penalty](ideas/fineract-prepayment-penalty.md) | apache/fineract @ `8a61e30a` | Enterprise | Ready |
 | [Early-payment discount](ideas/ofbiz-early-payment-discount.md) | apache/ofbiz-framework @ `f05a0c22` | Enterprise | Ready |
 | [Order instalment payments](ideas/pretix-instalments.md) | pretix/pretix @ `e6f8f178` | Enterprise | Ready |

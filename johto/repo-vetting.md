@@ -12,6 +12,7 @@ Checked 2026-10-31 to 2026-11-01. Method:
 | Repo | Pin | Language / build | Size | AI at pin | Build sources | Notes |
 |---|---|---|---|---|---|---|
 | spiral-project/ihatemoney | `e66a7672e8e5c41549bf53c4a824c72c43ab9079` (2026-08-07) | Python, Flask, SQLAlchemy, Alembic | 235 files, 46 .py, ~3k lines of app code, ~130 pytest tests | none ever | PyPI | Free hosted version, no pricing page. Personal-scale. |
+| ananthakumaran/paisa | `18ecd7d502c91cd5695d18ee42ac51d35919a6dd` (2026-10-21) | Go 1.24 + Svelte | 93 Go + 159 Svelte/TS files, 6 Go test files + JSON regression suite across ledger/hledger/beancount | none ever | Go modules, npm (+ ledger/hledger/beancount binaries) | No pricing. Personal-scale. |
 | apache/fineract | `8a61e30a4521c77a59bc55f598e14c128ffd183a` (2026-02-14) | Java 21, Gradle 8.14 | 4,736 main / 930 test Java files, 266 integration tests | 0 | Maven Central + Gradle plugin portal | AI commits start 2026-02-17, and `AGENTS.md`/`.claude/` appear 2026-07-05, so pin before them. |
 | apache/ofbiz-framework | `f05a0c2268f163573a0e0895ec381593de1283db` (2026-05-10) | Java 17 + Groovy, Gradle 8.14 | 1,147 Java + 484 Groovy, 35 test definitions (embedded Derby) | 0 | Central, maven.restlet.talend.com, packages.atlassian.com, clojars, alfresco public | AI commits start 2026-05-16 (21 since). The Gradle wrapper jar isn't committed, so run `gradle/init-gradle-wrapper.sh` first. |
 | pretix/pretix | `e6f8f178aff537bc32dc7359a5f561b8074a269b` (2026-10-29) | Python, Django 5.2 | 2,747 files, 995 .py source, 182 test modules | none ever | PyPI | It has a hosted product with a pricing page, so it's Enterprise. |
@@ -36,7 +37,7 @@ Checked 2026-10-31 to 2026-11-01. Method:
 | BroadleafCommerce | Clean, but it's a framework, not an application |
 | frappe/erpnext | Clean. The retention-billing gap exists, but payment terms can pass for a workaround, and setting up the Frappe bench is heavy. Kept as a backup. |
 | mayswind/ezbookkeeping | 5 AI commits since 2026-03 (pinnable before that). Not explored further. |
-| ananthakumaran/paisa, beancount/fava | Clean, 0 AI commits. Backups for Personal-scale. Gap not researched yet. |
+| beancount/fava | Clean, 0 AI commits. Backup for Personal-scale. Gap not researched yet. |
 
 ## Ideas dropped during gap checks
 - **Fineract balloon loans:** partly supported already through fixed-principal-percentage instalments (FINERACT-1348, FINERACT-2789).
