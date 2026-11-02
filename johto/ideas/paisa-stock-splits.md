@@ -44,3 +44,17 @@
 ## Verifying in a lane
 - Build with `go build ./...`, then run `go test ./...`. Install `ledger`, `hledger` and `beancount` (apt/pip), and node, for `tests/regression.test.ts`.
 - Expect the model to need its own fixture journal with a split, plus expected JSON for `/api/capital_gains` and `/api/harvest`. Neither exists yet.
+
+## Check run (2026-11-02)
+- One turn with no follow-ups. About 6.5 min and 40 tool calls, with a 13 KB diff across 5 files.
+- **What it built:**
+  - `ApplyStockSplit` in `internal/accounting/accounting.go` rescales lot units by (units after ÷ units before) and keeps each lot's cost and purchase date. The last lot absorbs rounding.
+  - It handles both ways of writing a split ("remove old + add new" and "add only the extra units"), plus reverse splits.
+  - `FIFO` is unchanged, and a new `FIFOWithStockSplit` sits beside it. `capital_gain.go` and `harvest.go` apply the split instead of treating it as a sale. Detection reuses `service.IsStockSplit`.
+  - Unit tests and an in-memory DB server test. It **checked that the tests fail on the old code**. `go vet` and `gofmt` are clean.
+- **Gaps:**
+  1. **Grandfathering:** the 2018-01-31 cost price is still in pre-split units. The model said so and left it.
+  2. **Splits with cash** (fractional shares paid out) aren't detected, because `IsStockSplit` rejects any transaction with a currency posting. Those quietly keep the old fake-sale behaviour. The model didn't mention this.
+  3. **No end-to-end run:** it never installed `ledger`, `hledger` or `beancount`, never ran a real journal, and never ran the regression suite.
+  4. **Narrow detection:** it only catches a split recorded in the exact shape the heuristic expects (same account, no other postings).
+- **Outcome:** not finished in one go, but the core is correct. Next step is a full run, pushing only on gaps 1–3.
