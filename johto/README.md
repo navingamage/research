@@ -11,7 +11,7 @@ Research notes for coding tasks set in real open-source applications. Every idea
 | [Loan prepayment penalty](ideas/fineract-prepayment-penalty.md) | apache/fineract @ `8a61e30a` | Enterprise | Ready |
 | [Early-payment discount](ideas/ofbiz-early-payment-discount.md) | apache/ofbiz-framework @ `f05a0c22` | Enterprise | Ready |
 | [Order instalment payments](ideas/pretix-instalments.md) | pretix/pretix @ `e6f8f178` | Enterprise | Ready |
-| [Minimum invoice amount](past-attempts.md#kill-bill-minimum-invoice-amount) | killbill/killbill @ `52e2f55f` | Enterprise | Submitted |
+| [Minimum invoice amount](past-attempts.md#kill-bill-minimum-invoice-amount) | killbill/killbill @ `52e2f55f`, rerun on `cb60779c` | Enterprise | Sent back, rerun |
 
 - [repo-vetting.md](repo-vetting.md) has every repo checked, the checks run, and why each one was kept or rejected.
 - [past-attempts.md](past-attempts.md) covers what happened when ideas were tried, including the ones that turned out too easy.
