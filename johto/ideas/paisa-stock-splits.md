@@ -58,3 +58,13 @@
   3. **No end-to-end run:** it never installed `ledger`, `hledger` or `beancount`, never ran a real journal, and never ran the regression suite.
   4. **Narrow detection:** it only catches a split recorded in the exact shape the heuristic expects (same account, no other postings).
 - **Outcome:** not finished in one go, but the core is correct. Next step is a full run, pushing only on gaps 1–3.
+
+## Full run (2026-11-02)
+- About 49 min, 124 tool calls, 5 follow-ups. The diff is 3.9 MB, nearly all of it new regression snapshot JSON (three `inr-split*` fixtures plus capital gains and harvest snapshots added to the existing fixtures). No existing fixture file was modified.
+- **Only after pushback, it:**
+  - installed ledger, hledger (pinned to 1.32 like CI) and beancount, and ran the real server
+  - got split handling right across five journal shapes in all three formats
+  - adjusted the grandfathered price for splits, handling both price sources: as-traded journal and Alpha Vantage prices, and Yahoo's already-adjusted ones
+  - added capital gains and harvest to the regression runner, with new split fixtures. `make lint` and `make test` pass.
+- **It also found:** a pre-existing sale-price bug for sales recorded at cost (fixed when asked), and `IsStockSplit` treating trades in a same-currency broker account as splits (fixed by making detection stricter).
+- **Still missing:** splits that include a cash payout for fractional shares or a balancing equity posting are still not detected, so they keep the fake-sale behaviour. The stricter `IsStockSplit` moved further from handling them.
