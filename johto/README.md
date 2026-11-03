@@ -8,10 +8,10 @@ Research notes for coding tasks set in real open-source applications. Every idea
 |---|---|---|---|
 | [Capital gains across stock splits](ideas/paisa-stock-splits.md) | ananthakumaran/paisa @ `18ecd7d5` | Personal-scale | Full run done |
 | [Uneven bill splits](ideas/ihatemoney-uneven-splits.md) | spiral-project/ihatemoney @ `e66a7672` | Personal-scale | Backup (likely too easy) |
-| [Loan prepayment penalty](ideas/fineract-prepayment-penalty.md) | apache/fineract @ `8a61e30a` | Enterprise | Ready |
+| [Loan prepayment penalty](ideas/fineract-prepayment-penalty.md) | apache/fineract @ `8a61e30a` | Enterprise | Picked, re-checked 2026-11-03 |
 | [Early-payment discount](ideas/ofbiz-early-payment-discount.md) | apache/ofbiz-framework @ `f05a0c22` | Enterprise | Ready |
 | [Order instalment payments](ideas/pretix-instalments.md) | pretix/pretix @ `e6f8f178` | Enterprise | Ready |
-| [Minimum invoice amount](past-attempts.md#kill-bill-minimum-invoice-amount) | killbill/killbill @ `52e2f55f`, rerun on `cb60779c` | Enterprise | Sent back, rerun |
+| [Minimum invoice amount](past-attempts.md#kill-bill-minimum-invoice-amount) | killbill/killbill @ `52e2f55f`, rerun on `cb60779c` | Enterprise | Rerun submitted |
 
 - [repo-vetting.md](repo-vetting.md) has every repo checked, the checks run, and why each one was kept or rejected.
 - [past-attempts.md](past-attempts.md) covers what happened when ideas were tried, including the ones that turned out too easy.

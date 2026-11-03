@@ -30,3 +30,19 @@
 
 **Verification in the lane:** Gradle compile takes about 10 min. Unit tests in `fineract-loan` and `fineract-progressive-loan` need no DB. Integration tests need Postgres or MariaDB in Docker and are slow, so only part of them gets run in a time-boxed run.
 - Small risk: the version comes from git tags (`me.qoomon.git-versioning`), and it falls back if the lane clone has no tags. Watch the first build.
+
+## Re-check (2026-11-03)
+- **Gap still open at upstream HEAD `71281f17` (2026-11-03):**
+  - no prepayment or early-repayment `ChargeTimeType`
+  - no code matches prepayment, early-repayment or foreclosure fee identifiers
+  - the 2,535 commits since the pin only fix prepay amounts and allocation
+- **At the pin:** 0 AI co-author trailers, and no AI files. Build sources are Maven Central and the Gradle plugin portal only.
+- **Size:** 5,667 Java files (930 tests) and 67 Cucumber feature files.
+- **Scope a full solution has to cover:**
+  - 11 repayment transaction processors
+  - 2 schedule engines (cumulative and progressive)
+  - replaying backdated transactions
+  - undoing and adjusting repayments
+  - the prepay and foreclosure templates
+  - four accounting modes
+- **Closest existing pattern:** the `OVERDUE_INSTALLMENT` charge, used across about 21 files.
