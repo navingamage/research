@@ -27,4 +27,8 @@ Every run used Claude Code with Opus 5.5 at High effort, inside a clean Docker l
   - held amounts on a cancelled account are never collected
   - it never installed Java, so nothing was compiled or tested
   - its own recommended default was "leave it unpaid", which lets the account go overdue
+- **Rerun full run** (2026-11-03, about 45 min, 3 substantive follow-ups): moved to an invoice-side carry-forward after the clarifying answer. It only added the cancellation flush after pushback, and only built and tested after being asked (Docker with a Maven image). Full build and about 930 module tests pass, and 51 targeted end-to-end tests pass. **Left open:**
+  - the full end-to-end regression, and MySQL/PostgreSQL
+  - invoice plugins skipped on the final invoice
+  - the upcoming-invoice preview doesn't show carried amounts
 - Lesson: domain correctness in a large, older Java codebase is where the model struggles. Before running anything, check that the pin builds from public repositories.
