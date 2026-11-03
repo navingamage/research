@@ -3,7 +3,60 @@
 - **Repo:** https://github.com/apache/fineract/tree/8a61e30a4521c77a59bc55f598e14c128ffd183a
 - **Stack:** Java 21, Gradle
 - **Domain:** Core banking and lending
-- **Status:** ready
+- **Status:** picked (2026-11-03) for a written-spec, unattended run
+
+## Background: what Fineract is
+- Apache Fineract is an open-source core-banking system. It started as Mifos (Grameen-style microfinance) and became an Apache top-level project in 2017.
+- **Users:** microfinance institutions, credit unions, small banks and fintechs, often as the ledger behind their own apps. Companies sell hosting and support around it.
+- **Shape:**
+  - a multi-tenant REST API server (Spring Boot, MySQL, MariaDB or Postgres, Liquibase) with no UI of its own
+  - covers clients, groups and centres, loans, savings, deposits, shares, charges and a full general ledger
+  - a nightly close-of-business (COB) batch handles accruals and overdue
+  - business events go out over Kafka or ActiveMQ
+
+### How a loan works
+- **Product and account:** a loan **product** is the template (rates, terms, charges, accounting rules). A loan **account** is created from it, then approved and disbursed.
+- **Schedule:** disbursement builds a repayment schedule with one of two engines. **Cumulative** is the classic one. **Progressive** is the newer EMI-style one, which recalculates as payments arrive.
+- **Allocation:** every repayment runs through a transaction processing strategy, which sets the allocation order (for example penalties, then fees, then interest, then principal). There are about 10 of them, plus an advanced, configurable allocation.
+- **Charges** attach at fixed trigger points: disbursement, a specified date, per instalment, overdue, or per tranche.
+- **Backdated activity replays the whole history:** a payment entered for an earlier date, or an undone payment, re-runs every transaction from the start. Anything computed during processing must come out the same on every replay.
+- **Accounting** posts journal entries in one of four modes: none, cash, periodic accrual or upfront accrual.
+
+### The gap in one line
+Borrowers can prepay (`prepayLoan`) or close early (`foreclosure`), but no charge trigger exists for paying early, so lenders can't recover the interest they lose.
+
+## Code map (at the pin)
+- **Charge definitions:**
+  - `fineract-core/.../charge/domain/ChargeTimeType.java` (17 values)
+  - `ChargeCalculationType` (FLAT, PERCENTAGE_AMOUNT, PERCENTAGE_LOAN_AMOUNT_PLUS_INTEREST, PERCENTAGE_INTEREST, PERCENTAGE_DISBURSEMENT_AMOUNT)
+- **Repayment processors:**
+  - `AbstractLoanRepaymentScheduleTransactionProcessor`, plus 9 strategy subclasses (FineractStyle, HeavensFamily, Creocore, RBI, EarlyPayment, PrincipalInterestPenaltyFeesOrder, InterestPrincipalPenaltyFeesOrder, DuePenFeeIntPri..., DuePenIntPriFee...)
+  - `AdvancedPaymentScheduleTransactionProcessor`
+- **Schedule engines:** `AbstractCumulativeLoanScheduleGenerator` and `ProgressiveLoanScheduleGenerator`. Both implement `calculatePrepaymentAmount`.
+- **Replay:** `ReprocessLoanTransactionsService`, `LoanTransactionProcessingService`.
+- **Reversal:** `adjustLoanTransaction` (`LoanWritePlatformService`, `LoanRepaymentAdjustmentCommandHandler`).
+- **Payoff quote:** `LoanReadPlatformServiceImpl.retrieveLoanPrePaymentTemplate`, and the `prepayLoan` and `foreclosure` commands on `LoanTransactionsApiResource`.
+- **Closest pattern:** `OVERDUE_INSTALLMENT`, which shows up in `LoanChargeService`, `LoanBalanceService`, both generators, `LoanRescheduleRequestDataValidatorImpl`, `Loan`, `LoanCharge`, and the charge read and write services.
+- **Tests:**
+  - unit tests in `fineract-loan` and `fineract-progressive-loan`
+  - integration tests in `integration-tests/` (ChargesTest, LoanWaiveChargeTest, LoanTransactionReverseReplayChargeOffTest, ...)
+  - Cucumber e2e in `fineract-e2e-tests-*`
+  - Docker Compose files for Postgres and MariaDB
+
+## Open design questions a spec has to settle
+- **Trigger:** principal paid beyond what's due, or any payment before maturity. Partial prepayments, full payoff or foreclosure, or both.
+- **Amount:** flat or a percent. The base is either prepaid or outstanding principal. Optional min and max caps.
+- **Lock-in:** only within the first N months or instalments.
+- **Exclusions:** final instalment on its due date, reschedule or refinance, write-off or charge-off, waiver, down payment.
+- **Collection:** taken from the same payment, or added as a due charge. Where it sits in the allocation order.
+- **Payoff and foreclosure quotes** include it.
+- **Reversals and replay** never leave a duplicate or stale penalty.
+- **Both schedule engines**, and all four accounting modes.
+- **Existing products and loans without the charge stay unchanged.**
+
+## Why this over the other Enterprise ideas
+- **OFBiz early-payment discount:** still open at HEAD (2026-11-01). But the build also pulls from restlet.talend, atlassian 3rd-party, clojars and alfresco, which couldn't be confirmed reachable ahead of time, and the scope is smaller.
+- **Pretix instalments:** still open, and the repo is clean. But Python/Django with a fast test suite is where a one-shot model does best, and the feature leans on checkout and emails more than backend logic.
 
 **Pre-flight (checked)**
 - Pin 2026-02-14, just before Claude co-authored commits started (2026-02-17). `AGENTS.md` and `.claude/` weren't added until 2026-07-05. Zero AI commits up to the pin.
