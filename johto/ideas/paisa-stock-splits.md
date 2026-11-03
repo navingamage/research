@@ -68,3 +68,18 @@
   - added capital gains and harvest to the regression runner, with new split fixtures. `make lint` and `make test` pass.
 - **It also found:** a pre-existing sale-price bug for sales recorded at cost (fixed when asked), and `IsStockSplit` treating trades in a same-currency broker account as splits (fixed by making detection stricter).
 - **Still missing:** splits that include a cash payout for fractional shares or a balancing equity posting are still not detected, so they keep the fake-sale behaviour. The stricter `IsStockSplit` moved further from handling them.
+
+## Extension: bonus issues (2026-11-03)
+- **Why:** the split-only version got close to a full solve. Bonus issues add a real domain trap on the same pages.
+- **Gap:** `bonus` appears nowhere in the code, at the pin or at upstream HEAD (2026-11-03). Upstream has 13 commits since the pin, and none touches capital gains, harvest, taxation, accounting or `IsStockSplit`.
+- **Domain rules (India):**
+  - **Split:** units scale, total cost unchanged, original purchase dates kept.
+  - **Bonus:** new units at nil cost (s.55(2)(aa)), held from the allotment date. The original lot is untouched.
+  - **Bonus allotted before 2018-02-01:** grandfathering gives those units the 2018-01-31 FMV as cost.
+- **Why it's hard:**
+  - In ledger, hledger and beancount, a bonus and a split can be recorded in the same shape (units into the same account, no cash). Telling them apart needs a convention: metadata, a tag, or narration.
+  - The usual wrong answers:
+    - treating a bonus like a split, so cost gets spread and the old dates are kept
+    - dropping the bonus units
+    - giving them a cost
+- **Same pin**, `18ecd7d502c91cd5695d18ee42ac51d35919a6dd`.
