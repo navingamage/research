@@ -22,4 +22,9 @@ Every run used Claude Code with Opus 5.5 at High effort, inside a clean Docker l
 - Build blocker: this pin needs `killbill-oss-parent 0.147.36`, which only exists on Kill Bill's login-protected Cloudsmith repo. Maven Central stops at 0.147.21. The last pin that builds from public sources is `cb60779c` (parent 0.147.20).
 - **Review 1 (2026-11-02): sent back.** The goal asked for more than the prompt did. The prompt read as "don't bother with tiny invoices", so neither collecting them later nor a per-account on/off switch followed from it. The reviewer asked for a new run with a prompt that says a minimum gets collected right away.
 - **Rerun plan:** re-pin to `cb60779c171391be558cd7aebb1eafea60ad2b82` so it builds from public sources, use a new prompt, and write a goal that only asks for what that prompt implies.
+- **Rerun check run** (2026-11-02, `cb60779c`, about 15 min, 67 tool calls, one clarifying question): built a per-currency minimum on the payment side. Held invoices stay open and are excluded from overdue, and the next bill charges everything as one payment, with the excess turned into account credit. **Misses:**
+  - it changes core behaviour for every account (any overpayment becomes credit, even with no minimum set)
+  - held amounts on a cancelled account are never collected
+  - it never installed Java, so nothing was compiled or tested
+  - its own recommended default was "leave it unpaid", which lets the account go overdue
 - Lesson: domain correctness in a large, older Java codebase is where the model struggles. Before running anything, check that the pin builds from public repositories.
