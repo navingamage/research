@@ -44,3 +44,10 @@ Checked 2026-10-31 to 2026-11-01. Method:
 - **Kill Bill coupons and discounts:** the catalog already has `DISCOUNT` phases.
 - **Kill Bill expiring credits:** a real gap (`CBADao` has no per-credit tracking), but it's the same repo and the same kind of problem as the minimum-invoice idea.
 - **Healthchecks maintenance windows, Miniflux WebSub:** too easy. See [past-attempts.md](past-attempts.md).
+
+## Vetted 2026-11-04
+Same method (blobless clone since 2025-01-01; AI files at HEAD and AI co-author trailers).
+- **Clean:** syncthing, godot, openjdk/jdk, typst, servo, OpenTTD, endless-sky, shattered-pixel-dungeon (no tests), gleam, futhark, purescript, pimutils/khal (184 files), beancount/fava, nkanaev/yarr, iSoron/uhabits, YOURLS, dullage/flatnotes, philc/vimium, taskwarrior, lfos/calcurse, pimutils/todoman, pimutils/vdirsyncer, traggo/server, tryton/tryton (mirror), apache/syncope, moqui/mantle-usl.
+- **Pin before AI starts:** etcd-io/etcd (2026-10-09), timewarrior (2025-10-03), akaunting (2026-03-16), sissbruecker/linkding (2026-08-05).
+- **AI-heavy, skip:** pandoc, prometheus, vitess, temporal, pebble, seaweedfs, juicefs, rclone, hibernate-orm, scala3 (pin before 2025-05-23), calcite (pin before 2026-06-24), excalidraw, logseq, lichess, penpot, beets, Radicale (2026-01 on), babybuddy, spliit, mealie, Unciv, wger, Tandoor, ezbookkeeping, hledger (`.claude/` from 2026-09), openemr, Dolibarr, frappe/hrms.
+

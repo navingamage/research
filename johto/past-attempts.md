@@ -34,3 +34,21 @@ Every run used Claude Code with Opus 5.5 at High effort, inside a clean Docker l
 - **Final outcome (2026-11-04): rejected.** The reviewer read the result as close to complete (3 or 4, not 2). The success criteria also still graded behaviour the short prompt never asked for: when held amounts get collected, flushing them on cancellation, credits, and overdue.
 - **Lesson:** with a short casual prompt, only grade what the prompt says. Any rule that has to be inferred (when to collect, edge cases) gets read as a new requirement. Hidden domain rules need a prompt that states them.
 - Lesson: domain correctness in a large, older Java codebase is where the model struggles. Before running anything, check that the pin builds from public repositories.
+
+## Max-difficulty pre-checks (2026-11-04)
+Sandboxed one-turn runs (Opus 5.5, High), not lane runs. Each workspace was the pinned tree with toolchains preinstalled. Hidden variants or a trap checklist were written before each run.
+
+| Repo @ pin | Problem | Time | Result |
+|---|---|---|---|
+| itchyny/gojq @ `e7c14ec` | keep object key order like jq | 30 min | 1,740 differential cases identical to jq |
+| postgres/postgres @ `b6178c94` | CREATE INDEX CONCURRENTLY on partitioned tables | 34 min | passed concurrent pgbench writes and amcheck |
+| binji/binjgb @ `1662111` | mode 3 timing (15 mooneye failures) | 32 min | all test ROMs pass |
+| OpenTTD/OpenTTD @ `611118d70` | #8424 trains crash through the back of a depot | 19 min | wrote a Squirrel AI to build the layout in 4 orientations; fixed in the collision check, not the radius change maintainers rejected; ctest 98/98 |
+| idris-lang/Idris2 @ `708075dc` | #3800 coverage checker accepts a proof of Void | 24 min | also fixed all 7 of 15 hidden variants the clean compiler gets wrong |
+| typst/typst @ `84cca406` | #5603 + #5314 footnote on a different page than its marker | 53 min | splits the breakable block above the marker line; 3,826 tests pass; 431-footnote stress test with none separated |
+| pimutils/khal @ `3ba0fcef` | edit only this / this and following for recurring events | 19 min | RFC 5545 details right (UTC UNTIL, COUNT split, all-day RECURRENCE-ID, re-editing an override); fixed a hidden data-loss bug in edit-all; missed updating the weekday rule on a weekday move (disclosed) |
+| beancount/fava @ `12d6fea6` | tick transactions, live sum, bulk tags/metadata (#2147) | 22 min | raw amounts instead of locale-formatted text, bottom-up writes for several entries in one file, all-or-nothing on plugin entries; UI placed where the maintainer suggested |
+| apache/fineract @ `8a61e30a` | prepayment penalty from a ~700-word, 10-requirement spec | 96 min to green, 110 min total | 19 new integration tests green on a live server and Postgres; 1,140 unit and 184 related integration tests green; caught 2 of its own bugs |
+
+- **Lesson:** a clear target plus any way to check it (a repro, a reference tool, a test suite, a spec) gets solved, whatever the language or codebase age. Size and slow verification only stretched the time: Fineract was the only run past 90 minutes.
+
