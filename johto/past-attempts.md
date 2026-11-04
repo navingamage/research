@@ -31,4 +31,6 @@ Every run used Claude Code with Opus 5.5 at High effort, inside a clean Docker l
   - the full end-to-end regression, and MySQL/PostgreSQL
   - invoice plugins skipped on the final invoice
   - the upcoming-invoice preview doesn't show carried amounts
+- **Final outcome (2026-11-04): rejected.** The reviewer read the result as close to complete (3 or 4, not 2). The success criteria also still graded behaviour the short prompt never asked for: when held amounts get collected, flushing them on cancellation, credits, and overdue.
+- **Lesson:** with a short casual prompt, only grade what the prompt says. Any rule that has to be inferred (when to collect, edge cases) gets read as a new requirement. Hidden domain rules need a prompt that states them.
 - Lesson: domain correctness in a large, older Java codebase is where the model struggles. Before running anything, check that the pin builds from public repositories.
