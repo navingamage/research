@@ -51,3 +51,34 @@ Same method (blobless clone since 2025-01-01; AI files at HEAD and AI co-author 
 - **Pin before AI starts:** etcd-io/etcd (2026-10-09), timewarrior (2025-10-03), akaunting (2026-03-16), sissbruecker/linkding (2026-08-05).
 - **AI-heavy, skip:** pandoc, prometheus, vitess, temporal, pebble, seaweedfs, juicefs, rclone, hibernate-orm, scala3 (pin before 2025-05-23), calcite (pin before 2026-06-24), excalidraw, logseq, lichess, penpot, beets, Radicale (2026-01 on), babybuddy, spliit, mealie, Unciv, wger, Tandoor, ezbookkeeping, hledger (`.claude/` from 2026-09), openemr, Dolibarr, frappe/hrms.
 
+
+## Vetted 2026-11-04: web frontend (Create × Web frontend × Enterprise)
+Same method. Shallow clones were deepened past any merge boundary newer than 2025-01-20, because a shallow cut can hide when an AI file was first added.
+- **Best:** element-hq/element-web, pinned at `ee5d2609df1421123e363d79c2e58efa200ad92b` (2026-03-16). Its first AI commit is 2026-03-17 and `AGENTS.md` arrives 2026-09-15. React 19/TS, about 1,380 source files, about 740 Jest test files and 138 Playwright specs; builds from npm plus a public codeload tarball.
+- **Near-clean, recent pins:**
+  - odoo/odoo `e3e47d97` (2026-04-27): OWL, 3.8k JS files; tests need Postgres and Chrome
+  - mastodon `5b395774` (2026-04-29): thin frontend tests, no first-party pricing
+  - zulip `715a9f31` (2026-02-06): jQuery + Handlebars
+  - nextcloud/server `c8e2bb93` (2026-04-15)
+  - nextcloud/calendar `45d2d8aa` (2026-05-20, small)
+  - jupyterlab `148597d8` (2026-01-26)
+  - joplin `89f9c6a5` (2026-02-18, Electron)
+  - OpenSearch-Dashboards `cbcfe2fa` (2026-01-26, needs a backend)
+  - nocodb `4f3d3749` (2026-02-24, almost no frontend unit tests)
+  - bitwarden/clients `fdf47ffe` (2025-10-02)
+- **Clean at HEAD:**
+  - standardnotes/app (only 38 web tests)
+  - ONLYOFFICE/web-apps (legacy code, needs sdkjs and DocumentServer)
+  - cryptpad (no frontend tests)
+- **Pins too old or AI-heavy:**
+  - grafana (2025-03), superset (2025-07), discourse (2025-04, or 2025-06 if one Copilot commit is excused), gutenberg (2025-08), outline (2025-04, about 22 frontend tests), Rocket.Chat (2025-05), metabase (2025-04), Ghost (2025-06)
+  - mattermost (2025-02), openproject (2025-01), appsmith (2025-01)
+- **Rejected:**
+  - twenty: AI files from before 2025
+  - plane: no frontend tests
+  - pdf.js: a library
+  - etherpad and wekan: small, AI-heavy
+  - PeerTube and jitsi: no frontend unit tests
+  - bigbluebutton: needs the full stack
+  - taiga-front: AngularJS 1.5
+- **Sandbox note:** `codeload.github.com` and `cdn.sheetjs.com` are blocked by this session's proxy, so Element Web and Metabase can't install their dependencies here.

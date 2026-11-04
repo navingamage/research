@@ -52,3 +52,11 @@ Sandboxed one-turn runs (Opus 5.5, High), not lane runs. Each workspace was the 
 
 - **Lesson:** a clear target plus any way to check it (a repro, a reference tool, a test suite, a spec) gets solved, whatever the language or codebase age. Size and slow verification only stretched the time: Fineract was the only run past 90 minutes.
 
+
+## Element Web: scheduled messages (2026-11-04)
+- Repo: element-hq/element-web @ `ee5d2609df1421123e363d79c2e58efa200ad92b`. Full write-up: [ideas/element-web-scheduled-messages.md](ideas/element-web-scheduled-messages.md).
+- **Pre-check** (sandboxed, one turn; dependencies couldn't be installed, so nothing ran): 57 min, 224 tool calls, +4.2k lines. It handled 8 of the 9 traps written beforehand. That included finding that js-sdk sends delayed events unencrypted and encrypting them itself, filtering out Element Call's delayed events, and making edits duplicate-safe.
+- **Lesson:**
+  - A trap that's written down in the dependency's source (a `TODO` comment) gets found as soon as the prompt states the requirement it breaks.
+  - For frontend Create tasks, difficulty has to come from behaviour that only shows at runtime (layout, scroll, focus, timing against a live server), where reading the code doesn't reveal it.
+  - Pre-checks for that need an environment that can install dependencies and run a browser.
