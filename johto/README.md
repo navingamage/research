@@ -8,12 +8,13 @@ Research notes for coding tasks set in real open-source applications. Every idea
 |---|---|---|---|
 | [Capital gains across stock splits](ideas/paisa-stock-splits.md) | ananthakumaran/paisa @ `18ecd7d5` | Personal-scale | Full run done |
 | [Uneven bill splits](ideas/ihatemoney-uneven-splits.md) | spiral-project/ihatemoney @ `e66a7672` | Personal-scale | Backup (likely too easy) |
-| [Loan prepayment penalty](ideas/fineract-prepayment-penalty.md) | apache/fineract @ `8a61e30a` | Enterprise | Picked. A 10-requirement version was finished in 96 min (2026-11-04), so it needs a wider scope |
-| [Early-payment discount](ideas/ofbiz-early-payment-discount.md) | apache/ofbiz-framework @ `f05a0c22` | Enterprise | Ready |
+| [Loan prepayment penalty](ideas/fineract-prepayment-penalty.md) | apache/fineract @ `8a61e30a` | Enterprise | Picked, top 3 #1. A 10-requirement version was finished in 96 min (2026-11-04), so it needs a wider scope |
+| [Early-payment discount](ideas/ofbiz-early-payment-discount.md) | apache/ofbiz-framework @ `f05a0c22` | Enterprise | Ready, top 3 #2 |
 | [Order instalment payments](ideas/pretix-instalments.md) | pretix/pretix @ `e6f8f178` | Enterprise | Ready |
-| [Review of an open layout PR](ideas/typst-pr7931-review.md) | typst/typst PR #7931 @ `1f0cd84a` (base `c98e9103`) | Enterprise | Not run yet |
+| [Review of an open layout PR](ideas/typst-pr7931-review.md) | typst/typst PR #7931 @ `1f0cd84a` (base `c98e9103`) | Enterprise | Not run yet, top 3 #3 |
 | [Minimum invoice amount](past-attempts.md#kill-bill-minimum-invoice-amount) | killbill/killbill @ `52e2f55f`, rerun on `cb60779c` | Enterprise | Rejected |
 
+- [top3/](top3/) has full codebase notes for the three hardest picks, plus the facts for each write-up.
 - [repo-vetting.md](repo-vetting.md) has every repo checked, the checks run, and why each one was kept or rejected.
 - [past-attempts.md](past-attempts.md) covers what happened when ideas were tried, including the ones that turned out too easy (9 more on 2026-11-04).
 
