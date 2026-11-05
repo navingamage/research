@@ -60,3 +60,17 @@ Sandboxed one-turn runs (Opus 5.5, High), not lane runs. Each workspace was the 
   - A trap that's written down in the dependency's source (a `TODO` comment) gets found as soon as the prompt states the requirement it breaks.
   - For frontend Create tasks, difficulty has to come from behaviour that only shows at runtime (layout, scroll, focus, timing against a live server), where reading the code doesn't reveal it.
   - Pre-checks for that need an environment that can install dependencies and run a browser.
+
+## Web-frontend round 1 (2026-11-05)
+- **Ideation:** 18 ideas across 7 repos, adversarially screened. The table is in [ideas/frontend-candidates/README.md](ideas/frontend-candidates/README.md).
+- **How the pre-checks ran:** blind, one turn, static only, since repo code can't be executed here. Each was graded, then re-checked by an adversarial verifier.
+
+| Idea | Traps passed | Rating | How it got past them |
+|---|---|---|---|
+| Odoo POS exchanges | 4 of 4 | 4.5 | Added its own exchange hook for pos_discount, used the `setPartner` pricing path, set `is_exchange` instead of `is_refund`, and filtered pos_loyalty to new lines |
+| OpenSearch Dashboards per-panel time | 4 of 4 | 5 | Passed the range through the PPL/SQL interceptors, routed applyFilter brushes per panel, computed Timeline axis bounds from the panel range, and gave each panel its own refresh stream |
+| Nextcloud read-only / no-download badges | 4 of 4 | 4.5 | Computed the restrictions on the server from the node as the user sees it, and exposed them over both DAV and OCS |
+
+- **Lesson:**
+  - With every rule stated in a casual prompt, Opus found traps spread across add-ons and plugins as well as the ones inside one module, in every web-frontend repo tried. That's 16 of 16 traps across four tasks.
+  - The remaining lever is runtime-only behaviour, which needs pre-checks that can execute code. This session's permission policy blocks that.

@@ -11,6 +11,7 @@ Research notes for coding tasks set in real open-source applications. Every idea
 | [Loan prepayment penalty](ideas/fineract-prepayment-penalty.md) | apache/fineract @ `8a61e30a` | Enterprise | Picked. A 10-requirement version was finished in 96 min (2026-11-04), so it needs a wider scope |
 | [Early-payment discount](ideas/ofbiz-early-payment-discount.md) | apache/ofbiz-framework @ `f05a0c22` | Enterprise | Ready |
 | [Order instalment payments](ideas/pretix-instalments.md) | pretix/pretix @ `e6f8f178` | Enterprise | Ready |
+| [POS exchanges at the till](ideas/odoo-pos-exchange.md) | odoo/odoo @ `e3e47d97` | Enterprise (web frontend) | Written up; pre-check passed 4 of 4 traps (4.5/5). Strongest frontend option so far |
 | [Scheduled messages](ideas/element-web-scheduled-messages.md) | element-hq/element-web @ `ee5d2609` | Enterprise (web frontend) | Written up; one-turn pre-check handled 8 of 9 traps, so not max difficulty yet |
 | [Review of an open layout PR](ideas/typst-pr7931-review.md) | typst/typst PR #7931 @ `1f0cd84a` (base `c98e9103`) | Enterprise | Not run yet |
 | [Minimum invoice amount](past-attempts.md#kill-bill-minimum-invoice-amount) | killbill/killbill @ `52e2f55f`, rerun on `cb60779c` | Enterprise | Rejected |
