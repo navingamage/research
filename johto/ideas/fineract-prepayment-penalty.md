@@ -3,7 +3,8 @@
 - **Repo:** https://github.com/apache/fineract/tree/8a61e30a4521c77a59bc55f598e14c128ffd183a
 - **Stack:** Java 21, Gradle
 - **Domain:** Core banking and lending
-- **Status:** picked (2026-11-03) for a written-spec, unattended run
+- **Status:** picked (2026-11-03) for a written-spec, unattended run. A 10-requirement version was finished in 96 min on 2026-11-04, so the next run needs the wider scope.
+- **Full notes:** [codebase notes and facts for the write-ups](../top3/fineract-prepayment-penalty/) (checked against the pin on 2026-11-04)
 
 ## Background: what Fineract is
 - Apache Fineract is an open-source core-banking system. It started as Mifos (Grameen-style microfinance) and became an Apache top-level project in 2017.
@@ -17,28 +18,28 @@
 ### How a loan works
 - **Product and account:** a loan **product** is the template (rates, terms, charges, accounting rules). A loan **account** is created from it, then approved and disbursed.
 - **Schedule:** disbursement builds a repayment schedule with one of two engines. **Cumulative** is the classic one. **Progressive** is the newer EMI-style one, which recalculates as payments arrive.
-- **Allocation:** every repayment runs through a transaction processing strategy, which sets the allocation order (for example penalties, then fees, then interest, then principal). There are about 10 of them, plus an advanced, configurable allocation.
+- **Allocation:** every repayment runs through a transaction processing strategy, which sets the allocation order (for example penalties, then fees, then interest, then principal). There are 9 of them, plus an advanced, configurable allocation, so 10 in all.
 - **Charges** attach at fixed trigger points: disbursement, a specified date, per instalment, overdue, or per tranche.
-- **Backdated activity replays the whole history:** a payment entered for an earlier date, or an undone payment, re-runs every transaction from the start. Anything computed during processing must come out the same on every replay.
+- **Backdated activity replays the whole history:** a payment entered for an earlier date, or an undone payment, re-runs every transaction from the start. Anything computed during processing must come out the same on every replay. (The latest payment on a loan without interest recalculation is processed on its own.)
 - **Accounting** posts journal entries in one of four modes: none, cash, periodic accrual or upfront accrual.
 
 ### The gap in one line
-Borrowers can prepay (`prepayLoan`) or close early (`foreclosure`), but no charge trigger exists for paying early, so lenders can't recover the interest they lose.
+Borrowers can prepay (a normal `repayment`, priced by the `prepayLoan` quote) or close early (`foreclosure`), but no charge trigger exists for paying early, so lenders can't recover the interest they lose.
 
 ## Code map (at the pin)
 - **Charge definitions:**
   - `fineract-core/.../charge/domain/ChargeTimeType.java` (17 values)
-  - `ChargeCalculationType` (FLAT, PERCENTAGE_AMOUNT, PERCENTAGE_LOAN_AMOUNT_PLUS_INTEREST, PERCENTAGE_INTEREST, PERCENTAGE_DISBURSEMENT_AMOUNT)
+  - `fineract-charge/.../charge/domain/ChargeCalculationType.java` (FLAT, PERCENT_OF_AMOUNT, PERCENT_OF_AMOUNT_AND_INTEREST, PERCENT_OF_INTEREST, PERCENT_OF_DISBURSEMENT_AMOUNT)
 - **Repayment processors:**
   - `AbstractLoanRepaymentScheduleTransactionProcessor`, plus 9 strategy subclasses (FineractStyle, HeavensFamily, Creocore, RBI, EarlyPayment, PrincipalInterestPenaltyFeesOrder, InterestPrincipalPenaltyFeesOrder, DuePenFeeIntPri..., DuePenIntPriFee...)
   - `AdvancedPaymentScheduleTransactionProcessor`
 - **Schedule engines:** `AbstractCumulativeLoanScheduleGenerator` and `ProgressiveLoanScheduleGenerator`. Both implement `calculatePrepaymentAmount`.
 - **Replay:** `ReprocessLoanTransactionsService`, `LoanTransactionProcessingService`.
 - **Reversal:** `adjustLoanTransaction` (`LoanWritePlatformService`, `LoanRepaymentAdjustmentCommandHandler`).
-- **Payoff quote:** `LoanReadPlatformServiceImpl.retrieveLoanPrePaymentTemplate`, and the `prepayLoan` and `foreclosure` commands on `LoanTransactionsApiResource`.
+- **Payoff quote:** `LoanReadPlatformServiceImpl.retrieveLoanPrePaymentTemplate`, and the `prepayLoan` and `foreclosure` templates (GET `transactions/template`) on `LoanTransactionsApiResource`. There's no POST `prepayLoan`: a prepayment is a `repayment`. `foreclosure` is also a POST command.
 - **Closest pattern:** `OVERDUE_INSTALLMENT`, which shows up in `LoanChargeService`, `LoanBalanceService`, both generators, `LoanRescheduleRequestDataValidatorImpl`, `Loan`, `LoanCharge`, and the charge read and write services.
 - **Tests:**
-  - unit tests in `fineract-loan` and `fineract-progressive-loan`
+  - unit tests, mostly in `fineract-provider/src/test` (146 classes), plus `fineract-progressive-loan` (13) and `fineract-loan` (8)
   - integration tests in `integration-tests/` (ChargesTest, LoanWaiveChargeTest, LoanTransactionReverseReplayChargeOffTest, ...)
   - Cucumber e2e in `fineract-e2e-tests-*`
   - Docker Compose files for Postgres and MariaDB
@@ -47,7 +48,7 @@ Borrowers can prepay (`prepayLoan`) or close early (`foreclosure`), but no charg
 - **Trigger:** principal paid beyond what's due, or any payment before maturity. Partial prepayments, full payoff or foreclosure, or both.
 - **Amount:** flat or a percent. The base is either prepaid or outstanding principal. Optional min and max caps.
 - **Lock-in:** only within the first N months or instalments.
-- **Exclusions:** final instalment on its due date, reschedule or refinance, write-off or charge-off, waiver, down payment.
+- **Exclusions:** final instalment on its due date, reschedule or refinance, write-off or charge-off, waiver, down payment. A foreclosure collapses the schedule first, so every foreclosure lands in the final period.
 - **Collection:** taken from the same payment, or added as a due charge. Where it sits in the allocation order.
 - **Payoff and foreclosure quotes** include it.
 - **Reversals and replay** never leave a duplicate or stale penalty.
@@ -55,7 +56,7 @@ Borrowers can prepay (`prepayLoan`) or close early (`foreclosure`), but no charg
 - **Existing products and loans without the charge stay unchanged.**
 
 ## Why this over the other Enterprise ideas
-- **OFBiz early-payment discount:** still open at HEAD (2026-11-01). But the build also pulls from restlet.talend, atlassian 3rd-party, clojars and alfresco, which couldn't be confirmed reachable ahead of time, and the scope is smaller.
+- **OFBiz early-payment discount:** still open at HEAD (re-checked 2026-11-04). But the build needs packages.atlassian.com and artifacts.alfresco.com for one dependency each, which couldn't be confirmed reachable ahead of time, and the scope is smaller.
 - **Pretix instalments:** still open, and the repo is clean. But Python/Django with a fast test suite is where a one-shot model does best, and the feature leans on checkout and emails more than backend logic.
 
 **Pre-flight (checked)**
@@ -74,14 +75,14 @@ Borrowers can prepay (`prepayLoan`) or close early (`foreclosure`), but no charg
 - What counts as a prepayment: paying principal ahead of schedule, versus paying amounts that are due or overdue. Partial prepayment versus full payoff.
 - The base and the limits: a percent of the prepaid principal or of the outstanding principal, min and max caps, and a lock-in window (only in the first N months).
 - Exclusions: the final scheduled instalment, reschedule or refinance, write-off and charge-off.
-- About 10 transaction processors plus the advanced payment allocation. Allocation order decides whether the penalty takes money meant for principal.
+- 9 transaction processors plus the advanced payment allocation. Allocation order decides whether the penalty takes money meant for principal.
 - Backdated transactions replay the loan's whole history, so the penalty has to come out the same on every replay. Undoing a repayment must remove its penalty.
 - With interest recalculation, a prepayment changes future interest and the schedule, so the order of the calculation matters.
 - The payoff and prepay template amount must include the penalty.
 - Accounting entries under both cash and accrual, plus COB accruals.
 - There are two schedule engines (cumulative and progressive), and both have to work.
 
-**Verification in the lane:** Gradle compile takes about 10 min. Unit tests in `fineract-loan` and `fineract-progressive-loan` need no DB. Integration tests need Postgres or MariaDB in Docker and are slow, so only part of them gets run in a time-boxed run.
+**Verification in the lane:** Gradle compile time hasn't been measured. Most loan unit tests are in `fineract-provider` and use Mockito, so they need no DB. Integration tests need Postgres or MariaDB in Docker and are slow, so only part of them gets run in a time-boxed run.
 - Small risk: the version comes from git tags (`me.qoomon.git-versioning`), and it falls back if the lane clone has no tags. Watch the first build.
 
 ## Re-check (2026-11-03)
@@ -92,10 +93,15 @@ Borrowers can prepay (`prepayLoan`) or close early (`foreclosure`), but no charg
 - **At the pin:** 0 AI co-author trailers, and no AI files. Build sources are Maven Central and the Gradle plugin portal only.
 - **Size:** 5,667 Java files (930 tests) and 67 Cucumber feature files.
 - **Scope a full solution has to cover:**
-  - 11 repayment transaction processors
+  - 10 repayment transaction processors (9 plus the advanced one)
   - 2 schedule engines (cumulative and progressive)
   - replaying backdated transactions
   - undoing and adjusting repayments
   - the prepay and foreclosure templates
   - four accounting modes
-- **Closest existing pattern:** the `OVERDUE_INSTALLMENT` charge, used across about 21 files.
+- **Closest existing pattern:** the `OVERDUE_INSTALLMENT` charge, used across about 21 files of main code.
+
+## Re-check (2026-11-04)
+- **Gap still open on upstream `develop` at `06ce07b5`:** no prepayment `ChargeTimeType`, and 0 hits for prepaymentPenalty, earlyRepaymentFee or foreclosureFee.
+- Upstream added one loan charge time after the pin, `DOWN_PAYMENT` with id 17. That's also the next free id at the pin, so a new value there would clash with upstream.
+- Corrections to the notes above are listed in section 18 of the [codebase notes](../top3/fineract-prepayment-penalty/codebase.md).
