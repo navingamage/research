@@ -15,6 +15,7 @@ Checked 2026-10-31 to 2026-11-01. Method:
 | ananthakumaran/paisa | `18ecd7d502c91cd5695d18ee42ac51d35919a6dd` (2026-10-21) | Go 1.24 + Svelte | 93 Go + 159 Svelte/TS files, 6 Go test files + JSON regression suite across ledger/hledger/beancount | none ever | Go modules, npm (+ ledger/hledger/beancount binaries) | No pricing. Personal-scale. |
 | apache/fineract | `8a61e30a4521c77a59bc55f598e14c128ffd183a` (2026-02-14) | Java 21, Gradle 8.14 | 4,736 main / 930 test Java files, 266 integration tests | 0 | Maven Central + Gradle plugin portal | AI commits start 2026-02-17, and `AGENTS.md`/`.claude/` appear 2026-07-05, so pin before them. |
 | apache/ofbiz-framework | `f05a0c2268f163573a0e0895ec381593de1283db` (2026-05-10) | Java 17 + Groovy, Gradle 8.14 | 1,147 Java + 484 Groovy, 35 test definitions (embedded Derby) | 0 | Central, maven.restlet.talend.com, packages.atlassian.com, clojars, alfresco public | AI commits start 2026-05-16 (21 since). The Gradle wrapper jar isn't committed, so run `gradle/init-gradle-wrapper.sh` first. Only 2 direct dependencies need a non-Central repo, one each from atlassian and alfresco (checked 2026-11-04). |
+| traggo/server | `8ca9bb6aa414ae621488a5a158a6235e89cfa57b` (2026-09-27) | Go 1.25 + React 16 / TS 3.7 (react-scripts 3) | 272 files, ~4.5k Go + ~6.8k UI TS lines, 58 Go test files, 1 UI test file | none ever | Go modules, public npm (yarn v1) | Self-hosted time tracker, no pricing. Personal-scale. UI build needs `NODE_OPTIONS=--openssl-legacy-provider` on Node 17+. Frontend candidate, see [ideas/traggo-daily-totals.md](ideas/traggo-daily-totals.md). |
 | pretix/pretix | `e6f8f178aff537bc32dc7359a5f561b8074a269b` (2026-10-29) | Python, Django 5.2 | 2,747 files, 995 .py source, 182 test modules | none ever | PyPI | It has a hosted product with a pricing page, so it's Enterprise. |
 | killbill/killbill | `cb60779c171391be558cd7aebb1eafea60ad2b82` (2026-08-20) | Java 21, Maven | 1,698 Java / 616 test | 0 (2 Copilot commits come later, 2026-10-19) | Central (parent `killbill-oss-parent 0.147.20`) | The last public-build pin. Later commits need parent 0.147.36, which is only on a login-protected Cloudsmith repo. |
 
@@ -37,7 +38,7 @@ Checked 2026-10-31 to 2026-11-01. Method:
 | BroadleafCommerce | Clean, but it's a framework, not an application |
 | frappe/erpnext | Clean. The retention-billing gap exists, but payment terms can pass for a workaround, and setting up the Frappe bench is heavy. Kept as a backup. |
 | mayswind/ezbookkeeping | 5 AI commits since 2026-03 (pinnable before that). Not explored further. |
-| beancount/fava | Clean, 0 AI commits. Backup for Personal-scale. Gap not researched yet. |
+| beancount/fava | Clean, 0 AI commits at `12d6fea6` (2026-11-03). Svelte 5, strict TS, 23 frontend test files. Backup for the frontend slot behind traggo: the maintainer closes gaps within weeks and the typed test suite catches most mistakes. |
 
 ## Ideas dropped during gap checks
 - **Fineract balloon loans:** partly supported already through fixed-principal-percentage instalments (FINERACT-1348, FINERACT-2789).
