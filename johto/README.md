@@ -7,6 +7,7 @@ Research notes for coding tasks set in real open-source applications. Every idea
 | Idea | Repo @ pin | Size | Status |
 |---|---|---|---|
 | [Capital gains across stock splits](ideas/paisa-stock-splits.md) | ananthakumaran/paisa @ `18ecd7d5` | Personal-scale | Full run done |
+| [Ask before a tool runs](ideas/oterm-tool-approval.md) | ggozad/oterm @ `de8604c6` | Personal-scale | Vetted 2026-11-06, AI-agents candidate; shell_gpt is the backup |
 | [Tracked time per day and week on the list page](ideas/traggo-daily-totals.md) | traggo/server @ `8ca9bb6a` | Personal-scale | Vetted 2026-11-06, frontend candidate; fava is the backup |
 | [Uneven bill splits](ideas/ihatemoney-uneven-splits.md) | spiral-project/ihatemoney @ `e66a7672` | Personal-scale | Backup (likely too easy) |
 | [Loan prepayment penalty](ideas/fineract-prepayment-penalty.md) | apache/fineract @ `8a61e30a` | Enterprise | Picked, top 3 #1. A 10-requirement version was finished in 96 min (2026-11-04), so it needs a wider scope |
