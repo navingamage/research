@@ -3,11 +3,11 @@
 - **Repo:** https://github.com/ggozad/oterm/tree/de8604c6425f5f4777319d7ac228b6d97e47e8a8 (tag `0.14.7`, 2025-12-19)
 - **Stack:** Python 3.10+, Textual 6.11 TUI, ollama-python 0.6, fastmcp 2.14 (MCP client), aiosqlite. Built with uv from PyPI.
 - **Domain:** a local LLM chat client with tool calling. Built-in tools (shell, date/time, think), custom Python tools, and MCP server tools, plus MCP prompts and sampling.
-- **Status:** candidate for an AI-agents slot. The backup is shell_gpt (below).
+- **Status:** ready. Full codebase notes and write-up facts are in [next3/oterm-tool-approval/](../next3/oterm-tool-approval/). The backup is shell_gpt (below).
 
 ## Pre-flight (checked 2026-11-06)
 - **What it is:** a real application, "the terminal client for Ollama". It's installed from PyPI or Homebrew and keeps chats in a local SQLite store. Single maintainer, MIT, no pricing.
-- **Size:** 56 Python files in `src/` (about 130 KB). 18 test files.
+- **Size:** 56 Python files in `src/` (about 130 KB). 13 test modules (17 files under `tests/`).
 - **Tests:**
   - `tests/conftest.py` pulls `llama3.2` into a running Ollama before every test, so most of the suite needs a live Ollama server.
   - The MCP tests start their own small servers (`tests/tools/mcp_servers.py`).
