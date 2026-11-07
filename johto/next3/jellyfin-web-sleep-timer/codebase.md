@@ -1,5 +1,7 @@
 # jellyfin-web: codebase context for a player sleep timer
 
+Repo: https://github.com/jellyfin/jellyfin-web/tree/0a580ce8df89282dfd120b6d5efb8e106da23bd5
+
 Pin `0a580ce8df89282dfd120b6d5efb8e106da23bd5` (tag `v12.4`, 2026-10-26). Server to run it against: Jellyfin 12.4 (`jellyfin/jellyfin:12.4` on Docker Hub, amd64 and arm64). Paths are under `src/` unless they're root files or start with `.github/`, and `:line` is at the pin. "(by reading)" means traced, not run.
 
 ## 1. What it is and who runs it

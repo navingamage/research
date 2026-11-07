@@ -1,5 +1,7 @@
 # listmonk, restarts and upgrades during a send: facts for the four write-ups
 
+Repo: https://github.com/knadh/listmonk/tree/30846f84154659ad0b365a3d7c9fe2231dd0d3c2
+
 Facts, numbers and open choices only, as fragments. The write-ups themselves get written separately.
 
 Pin `30846f84154659ad0b365a3d7c9fe2231dd0d3c2` (tag `v5.1.0`, 2025-09-09); master `91b76ec` (2026-11-06) for comparison. Image `listmonk/listmonk:v5.1.0`. Paths are repo-relative and `:line` is at the pin. More detail in `codebase.md`. "(by reading)" = traced, not run.

@@ -1,5 +1,7 @@
 # oterm, ask before a tool runs: facts for the four write-ups
 
+Repo: https://github.com/ggozad/oterm/tree/de8604c6425f5f4777319d7ac228b6d97e47e8a8
+
 Facts, numbers and open choices only, as fragments. The write-ups themselves get written separately.
 
 Pin `de8604c6425f5f4777319d7ac228b6d97e47e8a8` (tag `0.14.7`, 2025-12-19); HEAD `77335b6` (2026-11-06) for comparison. Paths are under `src/oterm/` unless they start with `tests/` or `docs/`, and `:line` is at the pin. More detail in `codebase.md`. "(by reading)" = traced, not run.

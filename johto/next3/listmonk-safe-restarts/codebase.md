@@ -1,5 +1,7 @@
 # listmonk: codebase context for restarts, reloads and upgrades during a send
 
+Repo: https://github.com/knadh/listmonk/tree/30846f84154659ad0b365a3d7c9fe2231dd0d3c2
+
 Pin `30846f84154659ad0b365a3d7c9fe2231dd0d3c2` (tag `v5.1.0`, 2025-09-09). Released image `listmonk/listmonk:v5.1.0` (amd64, arm64, armv7, armv6). Paths are repo-relative and `:line` is at the pin. "(by reading)" means traced, not run.
 
 ## 1. What it is and who runs it

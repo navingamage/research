@@ -1,5 +1,7 @@
 # jellyfin-web, a sleep timer for the player: facts for the four write-ups
 
+Repo: https://github.com/jellyfin/jellyfin-web/tree/0a580ce8df89282dfd120b6d5efb8e106da23bd5
+
 Facts, numbers and open choices only, as fragments. The write-ups themselves get written separately.
 
 Pin `0a580ce8df89282dfd120b6d5efb8e106da23bd5` (tag `v12.4`, 2026-10-26); master `c2679743` (2026-11-03) for comparison. Server `jellyfin/jellyfin:12.4`. Paths are under `src/` unless they're root files, and `:line` is at the pin. More detail in `codebase.md`. "(by reading)" = traced, not run.

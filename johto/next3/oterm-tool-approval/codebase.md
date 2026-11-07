@@ -1,5 +1,7 @@
 # oterm: codebase context for asking before a tool runs
 
+Repo: https://github.com/ggozad/oterm/tree/de8604c6425f5f4777319d7ac228b6d97e47e8a8
+
 Pin `de8604c6425f5f4777319d7ac228b6d97e47e8a8` (tag `0.14.7`, 2025-12-19). Paths are under `src/oterm/` unless they start with `src/`, `tests/`, `docs/` or `.github/`, or name a root file such as `pyproject.toml`. A bare `chat.py`, `tool_select.py` or `store.py` means `app/widgets/chat.py`, `app/widgets/tool_select.py` or `store/store.py`. `:line` is at the pin. "(by reading)" means traced, not run.
 
 ## 1. What it is and who runs it
